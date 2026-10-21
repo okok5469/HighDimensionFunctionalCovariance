@@ -1,0 +1,6 @@
+# Core library versions used for cleanup verification (Python 3.12.8).
+numpy==1.26.4
+scipy==1.16.1
+pandas==2.3.0
+matplotlib==3.10.1
+tqdm==4.67.1

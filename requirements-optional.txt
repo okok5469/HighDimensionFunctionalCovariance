@@ -1,0 +1,3 @@
+# Excel input and archived stock download workflow only.
+openpyxl==3.1.5
+akshare==1.18.62

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.conda/
+.vscode/
+.claude/
+.agents/
+
+# Keep generated results, stock caches, and local planning artifacts out of Git.
+/results/
+/data/cache/
+/archive/results/
+/archive/logs/
+/archive/stock_empirical/empirical_results/
+/.planning/
