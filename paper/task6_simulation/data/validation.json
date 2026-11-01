@@ -1,0 +1,28 @@
+{
+  "source_type": "machine_summary",
+  "methods": 356,
+  "paired": 213,
+  "counts": {
+    "pilot": {
+      "h0": 13,
+      "h1": 56,
+      "datasets": 9300
+    },
+    "confirm": {
+      "h0": 5,
+      "h1": 15,
+      "datasets": 9500
+    }
+  },
+  "confirm_categories": {
+    "positive": 18,
+    "noninferior_only": 15,
+    "negative": 6,
+    "unresolved": 6
+  },
+  "corrected_negative_labels": 6,
+  "summary_document_counts_and_intervals": "matched",
+  "raw_replicates_rescanned": false,
+  "input_hashes": "all matched",
+  "max_method_absolute_error_tolerance": 1e-12
+}

@@ -1,0 +1,31 @@
+test_calibration_and_fallback_gates (tests.test_task4_design.Task4DesignTests.test_calibration_and_fallback_gates) ... ok
+test_completed_weak_fallback_stops_and_never_confirms (tests.test_task4_design.Task4DesignTests.test_completed_weak_fallback_stops_and_never_confirms) ... ok
+test_counts_and_shared_null (tests.test_task4_design.Task4DesignTests.test_counts_and_shared_null) ... ok
+test_each_missing_method_and_missing_candidate_prohibits_selection (tests.test_task4_design.Task4DesignTests.test_each_missing_method_and_missing_candidate_prohibits_selection) ... ok
+test_each_primary_calibration_failure_excludes_only_matched_background (tests.test_task4_design.Task4DesignTests.test_each_primary_calibration_failure_excludes_only_matched_background) ... ok
+test_fallback_selects_two_peak_once_and_uses_adjacent_lower_tau (tests.test_task4_design.Task4DesignTests.test_fallback_selects_two_peak_once_and_uses_adjacent_lower_tau) ... ok
+test_independent_and_deduplicated_keys (tests.test_task4_design.Task4DesignTests.test_independent_and_deduplicated_keys) ... ok
+test_integer_boundary_selection_and_budget (tests.test_task4_design.Task4DesignTests.test_integer_boundary_selection_and_budget) ... ok
+test_lower_strength_and_locked_comparisons (tests.test_task4_design.Task4DesignTests.test_lower_strength_and_locked_comparisons) ... ok
+test_policy_file_is_validated_and_drift_fails_closed (tests.test_task4_design.Task4DesignTests.test_policy_file_is_validated_and_drift_fails_closed) ... ok
+test_two_peak_sampling_replays_exact_transform (tests.test_task4_design.Task4DesignTests.test_two_peak_sampling_replays_exact_transform) ... ok
+test_two_peaks_geometry (tests.test_task4_design.Task4DesignTests.test_two_peaks_geometry) ... ok
+test_fallback_once_then_final_lock_no_reselection (tests.test_task4_workflow.WorkflowTests.test_fallback_once_then_final_lock_no_reselection) ... ok
+test_four_methods_share_inputs_and_frozen_calls (tests.test_task4_workflow.WorkflowTests.test_four_methods_share_inputs_and_frozen_calls) ... ok
+test_immutable_plan (tests.test_task4_workflow.WorkflowTests.test_immutable_plan) ... ok
+test_initial_count_and_identity (tests.test_task4_workflow.WorkflowTests.test_initial_count_and_identity) ... ok
+test_manifest_excludes_results (tests.test_task4_workflow.WorkflowTests.test_manifest_excludes_results) ... ok
+test_missing_records_block_decision (tests.test_task4_workflow.WorkflowTests.test_missing_records_block_decision) ... ok
+test_source_change_blocks_resume (tests.test_task4_workflow.WorkflowTests.test_source_change_blocks_resume) ... ok
+test_fake_slurm_complete_fallback_resume_and_no_candidate (tests.test_task4_cluster.Task4ClusterTests.test_fake_slurm_complete_fallback_resume_and_no_candidate) ... ok
+test_finite_decision_transitions_and_seal (tests.test_task4_cluster.Task4ClusterTests.test_finite_decision_transitions_and_seal) ... ok
+test_package_and_workflow_identical_implementation_identity (tests.test_task4_cluster.Task4ClusterTests.test_package_and_workflow_identical_implementation_identity) ... ok
+test_scheduler_legacy_array_and_expired_job (tests.test_task4_cluster.Task4ClusterTests.test_scheduler_legacy_array_and_expired_job) ... ok
+test_standalone_powershell_dryrun (tests.test_task4_cluster.Task4ClusterTests.test_standalone_powershell_dryrun) ... ok
+test_task4_routes_and_package (tests.test_task4_cluster.Task4ClusterTests.test_task4_routes_and_package) ... ok
+test_transfer_dryrun_and_slurm_lf (tests.test_task4_cluster.Task4ClusterTests.test_transfer_dryrun_and_slurm_lf) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 12.260s
+
+OK

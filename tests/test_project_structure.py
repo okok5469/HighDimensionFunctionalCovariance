@@ -36,12 +36,14 @@ class ProjectStructureTests(unittest.TestCase):
                         f'Missing experiment package: {name}')
         return importlib.import_module(name)
 
-    def test_shared_statistics_match_original_fixed_seed_calculations(self):
+    def test_sample_covariance_preserves_original_definition(self):
         new = self.module('common.statistic_calculator_517')
         old = old_module('数值模拟/statistic_calculator_517.py')
         Y = np.random.default_rng(321).normal(size=(12, 4, 8))
-        np.testing.assert_array_equal(new.covariance_test(Y, B=9, seed=123),
-                                      old.covariance_test(Y, B=9, seed=123))
+        # Bootstrap RNG and finite-B critical values intentionally follow v1.1.
+        # The unbiased sample covariance itself must remain unchanged.
+        np.testing.assert_array_equal(new.calculate_u_statistic_matrices(Y),
+                                      old.calculate_u_statistic_matrices(Y))
 
     def test_xue_preserves_har_and_simulation_probability_conventions(self):
         new = self.module('common.statistic_calculator_xue')
@@ -51,27 +53,26 @@ class ProjectStructureTests(unittest.TestCase):
         old_helper = old_module('数值模拟/xue_helper.py',
                                 {'statistic_calculator_xue': old_sim})
         Y = np.random.default_rng(321).normal(size=(12, 4, 8))
-        np.testing.assert_array_equal(helper.run_xue_test(Y, s=3),
-                                      old_helper.run_xue_test(Y, s=3))
+        # Direct centered-product squares change rounding by a few ulps.
+        np.testing.assert_allclose(helper.run_xue_test(Y, s=3),
+                                   old_helper.run_xue_test(Y, s=3), rtol=1e-12, atol=1e-12)
         coefficients = helper.project_to_fourier_basis(Y, 3)
-        self.assertEqual(new.compute_Tn_xue(coefficients, s=3),
-                         old_har.compute_Tn_xue(coefficients, s=3))
+        self.assertAlmostEqual(new.compute_Tn_xue(coefficients, s=3),
+                               old_har.compute_Tn_xue(coefficients, s=3), places=12)
         for Tn in [-100.0, 0.0, 30.0, 100.0]:
-            self.assertEqual(new.xue_pvalue(Tn), old_har.xue_pvalue(Tn))
+            self.assertAlmostEqual(new.xue_pvalue(Tn), old_har.xue_pvalue(Tn), places=14)
             self.assertEqual(new.xue_pvalue(Tn, legacy=True), old_sim.xue_pvalue(Tn))
 
-    def test_three_generators_keep_original_datasets(self):
-        for suffix, function in [('one', 'create_dataset'),
-                                 ('two', 'create_dataset_M1'),
-                                 ('three', 'create_dataset_M3')]:
+    def test_third_generator_keeps_original_datasets(self):
+        # The two v1.1 DGPs have independent mathematical tests; model 3 is
+        # outside this revision and retains its historical data exactly.
+        for suffix, function in [('three', 'create_dataset_M3')]:
             with self.subTest(model=suffix):
                 new = self.module(f'simulation.data_generator_{suffix}')
                 old = old_module(f'数值模拟/data_generator_{suffix}.py')
                 for h0 in [True, False]:
                     args = dict(n=8, p=4, M=8, h0=h0, s0=2,
                                 signal_strength=0.2, seed=123)
-                    if suffix == 'one':
-                        args['q'] = 3
                     a, b = getattr(new, function)(**args), getattr(old, function)(**args)
                     np.testing.assert_array_equal(a['Y'], b['Y'])
 
@@ -136,12 +137,20 @@ class ProjectStructureTests(unittest.TestCase):
             for suffix in ['one', 'two', 'three']:
                 main = self.module(f'simulation.Main_{suffix}')
                 selected = {}
-                for task in main.create_experiment_tasks():
+                # Select all three formal experiment families before reducing
+                # sizes; the v1.1 smoke profile deliberately has only H0/H1.
+                with patch.object(main, 'TEST_MODE', False):
+                    formal_tasks = main.create_experiment_tasks()
+                for task in formal_tasks:
                     small = dict(task)
-                    small.update(n=8, p=4, M=8, B=5, n_repeats=1,
-                                 s0=2, signal_strength=0.2)
+                    small.update(n=8, p=4, M=8, B=5, n_repeats=1)
+                    h0 = bool(small['h0'])
+                    small.update(s0=0 if h0 else 2,
+                                 signal_strength=0.0 if h0 else 0.2)
+                    if suffix in ['one', 'two']:
+                        small['delta'] = small['signal_strength']
                     if suffix == 'one':
-                        small['q'] = 3
+                        small['q'] = 5
                     selected.setdefault(task['experiment'], small)
                 output = Path(directory) / suffix
                 with patch.object(main, 'OUTPUT_DIR', output), \

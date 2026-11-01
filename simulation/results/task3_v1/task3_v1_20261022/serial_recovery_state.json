@@ -1,0 +1,192 @@
+{
+  "identity": {
+    "release": "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+    "config_path": "/public/home/xjh/xmx/high_dimension_functional_data_covariance/incoming/task3_v1_20261022/cluster_config.json",
+    "release_manifest_sha256": "45b4e614e47d31945353a822ebaedd733e775a425eae0a2b3c8b7870aa4e4b12",
+    "original_controller_state_sha256": "684eb8cd78da4cee9bc9619d3ccc4767bbbbae0e61cfa35a6f4f5f3ae44d5099",
+    "original_config_sha256": "91dd86f11cb72cbcd5a98016f6552324ffe315c8096320fdf7d2a189a7fa2d01",
+    "recovery_script_sha256": "b0dc1da775a2ca0fa91265163aedddac60aa6402cb7ef8b0ee093ec9721730f1",
+    "scheduling_override": {
+      "array_concurrency": 1
+    }
+  },
+  "stage": "confirm_collect",
+  "job_id": "38607",
+  "history": [
+    {
+      "stage": "pilot_workers",
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--account=xjh",
+        "--partition=CMO_HPC",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--no-requeue",
+        "--mem=1246M",
+        "--time=30",
+        "--job-name=t3-worker",
+        "--chdir=/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "--output=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/worker-%A_%a.out",
+        "--error=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/worker-%A_%a.err",
+        "--array=0-124%1",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/cluster/task3/run.slurm",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022",
+        "worker",
+        "pilot"
+      ],
+      "job_id": "38478"
+    },
+    {
+      "stage": "pilot_collect",
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--account=xjh",
+        "--partition=CMO_HPC",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--no-requeue",
+        "--mem=8192M",
+        "--time=120",
+        "--job-name=t3-collect",
+        "--chdir=/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "--output=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/collect-%A_%a.out",
+        "--error=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/collect-%A_%a.err",
+        "--dependency=afterany:38478",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/cluster/task3/run.slurm",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022",
+        "collect",
+        "pilot"
+      ],
+      "job_id": "38479"
+    },
+    {
+      "stage": "pilot_collect",
+      "job_id": "38479",
+      "status": "COMPLETED"
+    },
+    {
+      "stage": "lock",
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--account=xjh",
+        "--partition=CMO_HPC",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--no-requeue",
+        "--mem=8192M",
+        "--time=120",
+        "--job-name=t3-lock",
+        "--chdir=/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "--output=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/lock-%A_%a.out",
+        "--error=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/lock-%A_%a.err",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/cluster/task3/run.slurm",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022",
+        "lock",
+        "pilot"
+      ],
+      "job_id": "38604"
+    },
+    {
+      "stage": "lock",
+      "job_id": "38604",
+      "status": "COMPLETED"
+    },
+    {
+      "stage": "plan_confirm",
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--account=xjh",
+        "--partition=CMO_HPC",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--no-requeue",
+        "--mem=8192M",
+        "--time=120",
+        "--job-name=t3-plan-workers",
+        "--chdir=/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "--output=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/plan-workers-%A_%a.out",
+        "--error=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/plan-workers-%A_%a.err",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/cluster/task3/run.slurm",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022",
+        "plan-workers",
+        "confirm",
+        "1800"
+      ],
+      "job_id": "38605"
+    },
+    {
+      "stage": "plan_confirm",
+      "job_id": "38605",
+      "status": "COMPLETED"
+    },
+    {
+      "stage": "confirm_workers",
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--account=xjh",
+        "--partition=CMO_HPC",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--no-requeue",
+        "--mem=1246M",
+        "--time=30",
+        "--job-name=t3-worker",
+        "--chdir=/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "--output=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/worker-%A_%a.out",
+        "--error=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/worker-%A_%a.err",
+        "--array=0-549%1",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/cluster/task3/run.slurm",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022",
+        "worker",
+        "confirm"
+      ],
+      "job_id": "38606"
+    },
+    {
+      "stage": "confirm_collect",
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--account=xjh",
+        "--partition=CMO_HPC",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--no-requeue",
+        "--mem=8192M",
+        "--time=120",
+        "--job-name=t3-collect",
+        "--chdir=/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "--output=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/collect-%A_%a.out",
+        "--error=/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022/logs/collect-%A_%a.err",
+        "--dependency=afterany:38606",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/cluster/task3/run.slurm",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022",
+        "/public/home/xjh/xmx/high_dimension_functional_data_covariance/results/task3_v1/task3_v1_20261022",
+        "collect",
+        "confirm"
+      ],
+      "job_id": "38607"
+    }
+  ],
+  "original_terminal_jobs": [
+    "38349",
+    "38350"
+  ],
+  "worker_job_id": "38606"
+}

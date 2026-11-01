@@ -1,0 +1,8 @@
+{
+  "experiment_id": "task5_unified_v1",
+  "backend": "python",
+  "figure_width_mm": 179.1,
+  "png_dpi": 360,
+  "source_mode": "verified_csv_snapshot",
+  "preserve_author_manuscript": true
+}

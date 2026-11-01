@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "scope": "Read-only deterministic diagnostics and source projection only; no generator.generate/test/bootstrap invocation",
+  "records": [
+    {
+      "model": "M1",
+      "s": 5,
+      "actual_projection_match": true,
+      "max_effect": 8.484550576034655,
+      "peak_ratio": 0.963718820861678
+    },
+    {
+      "model": "M1",
+      "s": 11,
+      "actual_projection_match": true,
+      "max_effect": 8.484550576034655,
+      "peak_ratio": 1.0000000000000007
+    },
+    {
+      "model": "M1",
+      "s": 21,
+      "actual_projection_match": true,
+      "max_effect": 8.484550576034655,
+      "peak_ratio": 1.0000000000000007
+    },
+    {
+      "model": "M2",
+      "s": 5,
+      "actual_projection_match": true,
+      "max_effect": 8.484279294006997,
+      "peak_ratio": 0.9567444619394176
+    },
+    {
+      "model": "M2",
+      "s": 11,
+      "actual_projection_match": true,
+      "max_effect": 8.484279294006997,
+      "peak_ratio": 1.0852617130734232
+    },
+    {
+      "model": "M2",
+      "s": 21,
+      "actual_projection_match": true,
+      "max_effect": 8.484279294006997,
+      "peak_ratio": 1.1192953659134055
+    },
+    {
+      "model": "coherent",
+      "s": 5,
+      "actual_projection_match": true,
+      "max_effect": 0.8478657423126746,
+      "peak_ratio": 0.03999999999999994
+    },
+    {
+      "model": "coherent",
+      "s": 11,
+      "actual_projection_match": true,
+      "max_effect": 0.847865742312675,
+      "peak_ratio": 0.24999999999999972
+    },
+    {
+      "model": "coherent",
+      "s": 21,
+      "actual_projection_match": true,
+      "max_effect": 0.8478657423126768,
+      "peak_ratio": 0.9999999999999993
+    }
+  ]
+}

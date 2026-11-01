@@ -1,0 +1,6 @@
+﻿phase,scenario_id,repeats,role,spec_id,n,p,M,tau,null_group_id,sigma_noise
+smoke,52a1ddf76bf0edf377bd,1,smoke,m1_fourier5_peak1,12,4,64,0.3,m1_fourier5_peak1,0.05
+smoke,ef5823dd23848ca38dee,1,smoke,m2_brownian_peak1,12,4,64,0.3,m2_brownian_peak1,0.05
+smoke,7a42ccd37d1c1de0c54b,1,smoke,coherent_all,12,4,64,0.3,spectrum_flat_b0,0.05
+smoke,9d7983918c1e1f8dcbf7,1,smoke,local_fejer,12,4,64,0.3,spectrum_flat_b0,0.05
+smoke,f415e71a07a59831c122,1,smoke,spectrum_fast_b4,12,4,64,0.3,spectrum_fast_b4,0.05

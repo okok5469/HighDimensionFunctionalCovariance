@@ -1,0 +1,19 @@
+{
+  "study": "task3_v1",
+  "phase": "smoke",
+  "n": 24,
+  "p": 6,
+  "M": 64,
+  "q": 20,
+  "B": 39,
+  "alpha": 0.05,
+  "repeats": 2,
+  "actual_scenarios": 25,
+  "data_sets": 50,
+  "xue_s": [
+    5,
+    11,
+    21
+  ],
+  "legacy_grid_M": 30
+}

@@ -1,0 +1,13 @@
+{
+  "zip_members_verified": 155,
+  "clean_rebuild": "passed",
+  "author_files_preserved": true,
+  "derived_data_byte_identical": [
+    "methods.csv",
+    "paired.csv",
+    "geometry_diagnostics.csv",
+    "figure_coverage.json"
+  ],
+  "full_pdf_qa_reexecuted": true,
+  "stdout": "Rebuilt 356 method rows / 213 paired comparisons; manuscripts preserved."
+}

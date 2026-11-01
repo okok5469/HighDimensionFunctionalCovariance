@@ -1,0 +1,8 @@
+{
+  "phase": "smoke",
+  "run_id": "494fcd355a558882265785eedcc991dceb1cc30a1d6e01c8ce2f4808c8c12bd9",
+  "complete": true,
+  "requested": 50,
+  "completed": 50,
+  "failures": []
+}

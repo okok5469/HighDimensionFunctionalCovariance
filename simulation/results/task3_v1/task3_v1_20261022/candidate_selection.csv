@@ -1,0 +1,8 @@
+spec_id,family,score,status
+coherent_all,task3_coherent,-0.05,eligible
+coherent_tail,task3_coherent,-0.060000000000000005,eligible
+local_fejer,task3_local,-0.09,eligible
+spectrum_flat_b0,task3_spectrum,-0.21,eligible
+spectrum_slow_b1,task3_spectrum,-0.21,eligible
+band_tail,task3_band,-0.54,eligible
+band_head,task3_band,-0.55,eligible

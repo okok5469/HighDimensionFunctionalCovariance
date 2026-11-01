@@ -1,0 +1,97 @@
+{
+  "study": "task5_unified_v1",
+  "source_type": "machine_summary",
+  "verification_scope": "summary files, locks, existing integrity declarations, cross-check report; no replication-record rescan",
+  "inputs": [
+    {
+      "path": "inputs/pilot_summary.csv",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/pilot_summary.csv",
+      "sha256": "f2391ecded64e2e1d0bf56e1c1ea53a142f09a97d69db26642abcc2d9edb8832",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/pilot_paired_comparisons.csv",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/pilot_paired_comparisons.csv",
+      "sha256": "0eb5a083af24e86db05351e2779d81870fb6b86b0be97260dec13ba3ee0267e7",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/pilot_diagnostic_summary.csv",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/pilot_diagnostic_summary.csv",
+      "sha256": "caec77a3f70cf7d9a3a94b873d81a7a9433198257541a71f973e3cfb8e73293f",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/pilot_integrity.json",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/pilot_integrity.json",
+      "sha256": "119da2d3ce03201fd64f6847bf0f0dc1318e9c271c70f03ae703a27bcb272d0d",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/pilot_plan.json",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/pilot_plan.json",
+      "sha256": "756e72bb4faefffdd9d196618c52f1c5ad3d550ed723d594cbff467b5e2216fe",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/confirm_summary.csv",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/confirm_summary.csv",
+      "sha256": "841d01cdc7f1cd469f8d5394c2a710e9fa1b42bae05836083021d3c27e70ceee",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/confirm_paired_comparisons.csv",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/confirm_paired_comparisons.csv",
+      "sha256": "b7f86a3184102bbbe4823e832394e1d9b0e49edb08e445e637c5a18fdaea3532",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/confirm_diagnostic_summary.csv",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/confirm_diagnostic_summary.csv",
+      "sha256": "2049e10a7292423b8eeae43238c06f580eeacf43daade50393cd778d741d77c8",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/confirm_integrity.json",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/confirm_integrity.json",
+      "sha256": "bffd6bddbae3b1e38ebb9dc95ce1cb00798375d818a2c3116b91d491ad8b9fda",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/confirm_plan.json",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/confirm_plan.json",
+      "sha256": "dd47d25c2e4a2849d0a9f6ba45f8625c56e7b23b56f6c487440cbbf84934becb",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/confirm_locked.json",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/confirm_locked.json",
+      "sha256": "dd47d25c2e4a2849d0a9f6ba45f8625c56e7b23b56f6c487440cbbf84934becb",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/search_decision.json",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/search_decision.json",
+      "sha256": "30a656ed24ca88df16cf1b857b2e851283396d4c9004f16d838d825db257667e",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/DONE.json",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/DONE.json",
+      "sha256": "3999092db3b6061a63e210026fc3407d493ba7b780fb1ee595f362dad459b5c0",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/implementation_manifest.json",
+      "original_path": "simulation/results/task3_v1_lockfix_20261022/implementation_manifest.json",
+      "sha256": "cb9a21710cbf731bdcdb08e4350dfa903ee1d68aba21eb2dc48ad5a8a9ff8b86",
+      "source_type": "machine_summary"
+    },
+    {
+      "path": "inputs/task5_summary_document.md",
+      "original_path": "docs/Task5完整数值模拟汇总.md",
+      "sha256": "c41ad79638c7addceef22d33e8791770ef45c778bc77932bdb4ac46ca4da41c7",
+      "source_type": "summary_document"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "source_dir": "data/har/UCI HAR Dataset/UCI HAR Dataset",
+  "results_dir": "results/empirical/har/task7_subject_v2",
+  "activity_ids": [1, 2, 3, 4, 5, 6],
+  "include_static_subject_mean": true,
+  "B": 500,
+  "alpha": 0.05,
+  "seed_base": 20261026
+}

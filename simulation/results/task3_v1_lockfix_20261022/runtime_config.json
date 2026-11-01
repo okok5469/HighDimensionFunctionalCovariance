@@ -1,0 +1,20 @@
+{
+  "remote_project_dir": "/public/home/xjh/xmx/high_dimension_functional_data_covariance",
+  "account": "xjh",
+  "partition": "CMO_HPC",
+  "module": "anaconda3",
+  "conda_env": "myenv",
+  "run_name": "task3_v1_lockfix_20261022",
+  "package_file": "covariance_task5_unified_v1_20261024.zip",
+  "bootstrap_memory_mb": 8192,
+  "bootstrap_time_minutes": 60,
+  "control_memory_mb": 8192,
+  "control_time_minutes": 120,
+  "worker_memory_limit_mb": 65536,
+  "worker_time_limit_minutes": 720,
+  "seconds_per_chunk": 1800,
+  "array_concurrency": 8,
+  "poll_seconds": 30,
+  "skip_dimension_extension": false,
+  "download_dir": "./task3_download"
+}

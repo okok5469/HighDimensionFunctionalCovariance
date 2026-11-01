@@ -1,0 +1,474 @@
+{
+  "action": "confirm",
+  "selection": {
+    "study": "task5_unified_v1",
+    "selected_model": "coherent_all",
+    "ranking": [
+      {
+        "spec_id": "coherent_all",
+        "eligible": true,
+        "exclusion_reasons": [],
+        "anchor_null_rejections": 26,
+        "anchor_power_rejections": 50,
+        "anchor_null_point_in_band": {
+          "ours": true,
+          "xue_s5": false,
+          "xue_s11": true,
+          "xue_s21": true
+        },
+        "anchor_power_rejection_differences": {
+          "xue_s5": 47,
+          "xue_s11": 45,
+          "xue_s21": 44
+        },
+        "band_cells_in_L": 3,
+        "max_null_count_distance_in_L": 5,
+        "power_rejections_sum_in_L": 134,
+        "null_rejections_in_L": [
+          20,
+          26,
+          29
+        ],
+        "power_rejections_in_L": [
+          34,
+          50,
+          50
+        ],
+        "calibration": {
+          "anchor_null": {
+            "ours": 26,
+            "xue_s5": 38,
+            "xue_s11": 26,
+            "xue_s21": 28
+          },
+          "anchor_power": {
+            "ours": 50,
+            "xue_s5": 3,
+            "xue_s11": 5,
+            "xue_s21": 6
+          },
+          "null_in_L": [
+            {
+              "ours": 20,
+              "xue_s5": 41,
+              "xue_s11": 37,
+              "xue_s21": 29
+            },
+            {
+              "ours": 26,
+              "xue_s5": 38,
+              "xue_s11": 26,
+              "xue_s21": 28
+            },
+            {
+              "ours": 29,
+              "xue_s5": 19,
+              "xue_s11": 15,
+              "xue_s21": 23
+            }
+          ],
+          "power_in_L": [
+            {
+              "ours": 34,
+              "xue_s5": 7,
+              "xue_s11": 5,
+              "xue_s21": 5
+            },
+            {
+              "ours": 50,
+              "xue_s5": 3,
+              "xue_s11": 1,
+              "xue_s21": 3
+            },
+            {
+              "ours": 50,
+              "xue_s5": 3,
+              "xue_s11": 0,
+              "xue_s21": 0
+            }
+          ]
+        },
+        "selected": true,
+        "rank": 1,
+        "not_selected_reason": null
+      },
+      {
+        "spec_id": "m1_fourier5_peak1",
+        "eligible": true,
+        "exclusion_reasons": [],
+        "anchor_null_rejections": 26,
+        "anchor_power_rejections": 50,
+        "anchor_null_point_in_band": {
+          "ours": true,
+          "xue_s5": true,
+          "xue_s11": true,
+          "xue_s21": true
+        },
+        "anchor_power_rejection_differences": {
+          "xue_s5": 0,
+          "xue_s11": 0,
+          "xue_s21": 0
+        },
+        "band_cells_in_L": 3,
+        "max_null_count_distance_in_L": 6,
+        "power_rejections_sum_in_L": 150,
+        "null_rejections_in_L": [
+          19,
+          26,
+          19
+        ],
+        "power_rejections_in_L": [
+          50,
+          50,
+          50
+        ],
+        "calibration": {
+          "anchor_null": {
+            "ours": 26,
+            "xue_s5": 25,
+            "xue_s11": 24,
+            "xue_s21": 27
+          },
+          "anchor_power": {
+            "ours": 50,
+            "xue_s5": 50,
+            "xue_s11": 50,
+            "xue_s21": 50
+          },
+          "null_in_L": [
+            {
+              "ours": 19,
+              "xue_s5": 31,
+              "xue_s11": 42,
+              "xue_s21": 30
+            },
+            {
+              "ours": 26,
+              "xue_s5": 25,
+              "xue_s11": 24,
+              "xue_s21": 27
+            },
+            {
+              "ours": 19,
+              "xue_s5": 28,
+              "xue_s11": 26,
+              "xue_s21": 25
+            }
+          ],
+          "power_in_L": [
+            {
+              "ours": 50,
+              "xue_s5": 50,
+              "xue_s11": 50,
+              "xue_s21": 50
+            },
+            {
+              "ours": 50,
+              "xue_s5": 50,
+              "xue_s11": 50,
+              "xue_s21": 50
+            },
+            {
+              "ours": 50,
+              "xue_s5": 50,
+              "xue_s11": 50,
+              "xue_s21": 50
+            }
+          ]
+        },
+        "selected": false,
+        "rank": 2,
+        "not_selected_reason": "lower_fixed_rank"
+      },
+      {
+        "spec_id": "m2_brownian_peak1",
+        "eligible": true,
+        "exclusion_reasons": [],
+        "anchor_null_rejections": 19,
+        "anchor_power_rejections": 50,
+        "anchor_null_point_in_band": {
+          "ours": true,
+          "xue_s5": true,
+          "xue_s11": true,
+          "xue_s21": true
+        },
+        "anchor_power_rejection_differences": {
+          "xue_s5": 0,
+          "xue_s11": 0,
+          "xue_s21": 0
+        },
+        "band_cells_in_L": 3,
+        "max_null_count_distance_in_L": 9,
+        "power_rejections_sum_in_L": 150,
+        "null_rejections_in_L": [
+          24,
+          19,
+          16
+        ],
+        "power_rejections_in_L": [
+          50,
+          50,
+          50
+        ],
+        "calibration": {
+          "anchor_null": {
+            "ours": 19,
+            "xue_s5": 22,
+            "xue_s11": 23,
+            "xue_s21": 26
+          },
+          "anchor_power": {
+            "ours": 50,
+            "xue_s5": 50,
+            "xue_s11": 50,
+            "xue_s21": 50
+          },
+          "null_in_L": [
+            {
+              "ours": 24,
+              "xue_s5": 22,
+              "xue_s11": 29,
+              "xue_s21": 24
+            },
+            {
+              "ours": 19,
+              "xue_s5": 22,
+              "xue_s11": 23,
+              "xue_s21": 26
+            },
+            {
+              "ours": 16,
+              "xue_s5": 31,
+              "xue_s11": 26,
+              "xue_s21": 25
+            }
+          ],
+          "power_in_L": [
+            {
+              "ours": 50,
+              "xue_s5": 50,
+              "xue_s11": 50,
+              "xue_s21": 50
+            },
+            {
+              "ours": 50,
+              "xue_s5": 50,
+              "xue_s11": 50,
+              "xue_s21": 50
+            },
+            {
+              "ours": 50,
+              "xue_s5": 50,
+              "xue_s11": 50,
+              "xue_s21": 50
+            }
+          ]
+        },
+        "selected": false,
+        "rank": 3,
+        "not_selected_reason": "lower_fixed_rank"
+      }
+    ],
+    "calibration": [
+      {
+        "scenario_id": "6b92c0c2ff34384c73c2",
+        "spec_id": "m1_fourier5_peak1",
+        "null_group_id": "m1_fourier5_peak1",
+        "n": 200,
+        "p": 20,
+        "rejections": {
+          "ours": 15,
+          "xue_s5": 40,
+          "xue_s11": 37,
+          "xue_s21": 46
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "fa189bef34015ab26dc0",
+        "spec_id": "m1_fourier5_peak1",
+        "null_group_id": "m1_fourier5_peak1",
+        "n": 400,
+        "p": 20,
+        "rejections": {
+          "ours": 19,
+          "xue_s5": 31,
+          "xue_s11": 42,
+          "xue_s21": 30
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "9bf99002313ec38a90de",
+        "spec_id": "m1_fourier5_peak1",
+        "null_group_id": "m1_fourier5_peak1",
+        "n": 800,
+        "p": 20,
+        "rejections": {
+          "ours": 26,
+          "xue_s5": 25,
+          "xue_s11": 24,
+          "xue_s21": 27
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "1344afc19d346ab828f9",
+        "spec_id": "m1_fourier5_peak1",
+        "null_group_id": "m1_fourier5_peak1",
+        "n": 800,
+        "p": 50,
+        "rejections": {
+          "ours": 19,
+          "xue_s5": 28,
+          "xue_s11": 26,
+          "xue_s21": 25
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "c6cba93daad0f824e4b1",
+        "spec_id": "m2_brownian_peak1",
+        "null_group_id": "m2_brownian_peak1",
+        "n": 200,
+        "p": 20,
+        "rejections": {
+          "ours": 15,
+          "xue_s5": 43,
+          "xue_s11": 69,
+          "xue_s21": 98
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "13cb52c658250f95b70c",
+        "spec_id": "m2_brownian_peak1",
+        "null_group_id": "m2_brownian_peak1",
+        "n": 400,
+        "p": 20,
+        "rejections": {
+          "ours": 24,
+          "xue_s5": 22,
+          "xue_s11": 29,
+          "xue_s21": 24
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "8e1808578a2e783a1d75",
+        "spec_id": "m2_brownian_peak1",
+        "null_group_id": "m2_brownian_peak1",
+        "n": 800,
+        "p": 20,
+        "rejections": {
+          "ours": 19,
+          "xue_s5": 22,
+          "xue_s11": 23,
+          "xue_s21": 26
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "820cad5cf36d096d2cbb",
+        "spec_id": "m2_brownian_peak1",
+        "null_group_id": "m2_brownian_peak1",
+        "n": 800,
+        "p": 50,
+        "rejections": {
+          "ours": 16,
+          "xue_s5": 31,
+          "xue_s11": 26,
+          "xue_s21": 25
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "6f7932ebc8599ab002b3",
+        "spec_id": "spectrum_flat_b0",
+        "null_group_id": "spectrum_flat_b0",
+        "n": 200,
+        "p": 20,
+        "rejections": {
+          "ours": 17,
+          "xue_s5": 52,
+          "xue_s11": 52,
+          "xue_s21": 51
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "c401677e0db44022b94f",
+        "spec_id": "spectrum_flat_b0",
+        "null_group_id": "spectrum_flat_b0",
+        "n": 400,
+        "p": 20,
+        "rejections": {
+          "ours": 20,
+          "xue_s5": 41,
+          "xue_s11": 37,
+          "xue_s21": 29
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "3f64a4441cc8d29ceef2",
+        "spec_id": "spectrum_flat_b0",
+        "null_group_id": "spectrum_flat_b0",
+        "n": 800,
+        "p": 20,
+        "rejections": {
+          "ours": 26,
+          "xue_s5": 38,
+          "xue_s11": 26,
+          "xue_s21": 28
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "e7b65a6eafdf7caf888b",
+        "spec_id": "spectrum_flat_b0",
+        "null_group_id": "spectrum_flat_b0",
+        "n": 800,
+        "p": 50,
+        "rejections": {
+          "ours": 29,
+          "xue_s5": 19,
+          "xue_s11": 15,
+          "xue_s21": 23
+        },
+        "planned": 500
+      },
+      {
+        "scenario_id": "738d55c1c188ff66774c",
+        "spec_id": "spectrum_fast_b4",
+        "null_group_id": "spectrum_fast_b4",
+        "n": 800,
+        "p": 20,
+        "rejections": {
+          "ours": 18,
+          "xue_s5": 35,
+          "xue_s11": 20,
+          "xue_s21": 26
+        },
+        "planned": 500
+      }
+    ],
+    "exploration_datasets": 9300,
+    "decision": "confirm_anchor_and_extension",
+    "thresholds": {
+      "anchor_null_rejections": [
+        15,
+        35
+      ],
+      "anchor_power_minimum_rejections": 40,
+      "nominal_alpha": 0.05,
+      "level_band": [
+        0.03,
+        0.07
+      ]
+    }
+  },
+  "pilot_run_id": "686b13930aaa30426bce0cd5a5e03c32a011d58a7117bb8065479a2e15df9113",
+  "confirm_run_id": "c24290e8c9a8eccbb013998569060012d7602fcc026f7b4a07b7e5eb3701658e",
+  "implementation_hash": "8e6d441ad5f326bb52e7a6a39ccd72e1a30b58f1baadb3407897a3374519d348"
+}

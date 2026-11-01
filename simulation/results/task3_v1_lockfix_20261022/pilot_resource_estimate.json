@@ -1,0 +1,32 @@
+{
+  "worker_hours": 131.626320122974,
+  "ideal_wall_hours": 16.45329001537175,
+  "concurrent_workers": 8,
+  "shapes": [
+    {
+      "n": 200,
+      "p": 20,
+      "seconds": 10.4361020475626,
+      "peak_memory_mb": 189.34375
+    },
+    {
+      "n": 400,
+      "p": 20,
+      "seconds": 14.886274709366262,
+      "peak_memory_mb": 192.6796875
+    },
+    {
+      "n": 800,
+      "p": 20,
+      "seconds": 24.92971794400364,
+      "peak_memory_mb": 203.76953125
+    },
+    {
+      "n": 800,
+      "p": 50,
+      "seconds": 164.70886067673564,
+      "peak_memory_mb": 707.94921875
+    }
+  ],
+  "assumptions": "Per-shape maximum of two B500 measurements; 2x scheduling safety factor. Worker hours exclude queue delay; family runtime differences remain uncertain."
+}

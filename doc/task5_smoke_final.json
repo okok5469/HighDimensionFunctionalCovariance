@@ -1,0 +1,98 @@
+{
+  "output": "C:\\Users\\xmx\\AppData\\Local\\Temp\\task5_final_smoke_a2lcpl6w",
+  "smoke": {
+    "phase": "smoke",
+    "run_id": "cb032409b1aed30b08ae048f53a32d2f5bfd4d0e7779567b83cbba244719a4dc",
+    "requested": 5,
+    "completed": 5,
+    "complete": true,
+    "failures": []
+  },
+  "small_benchmark": {
+    "small": true,
+    "implementation_hash": "8e6d441ad5f326bb52e7a6a39ccd72e1a30b58f1baadb3407897a3374519d348",
+    "environment_hash": "15f4587a08b678450d736ee2f93ac3f4976851356d8ed2e150533c63030b212d",
+    "measurements": [
+      {
+        "n": 12,
+        "p": 4,
+        "M": 64,
+        "B": 3,
+        "replicate": 0,
+        "small": true,
+        "implementation_hash": "8e6d441ad5f326bb52e7a6a39ccd72e1a30b58f1baadb3407897a3374519d348",
+        "seconds": 0.03337950000423007,
+        "peak_memory_mb": 96.01171875,
+        "method_seconds": {
+          "ours": 0.00560639999457635,
+          "xue_s5": 0.006426699997973628,
+          "xue_s11": 0.0068057000025874,
+          "xue_s21": 0.01044900000852067
+        },
+        "data_id": "3d01bd4d38b9e04add41258840831f9a3e4dc873fdb4fee1567c084cdf141232",
+        "data_sha256": "3592805b8bb9b975ae5d82ccb2d48d11103aa5d1a84fe7386bfa069b137e224d",
+        "environment": {
+          "python": "3.12.8",
+          "executable": "C:\\Users\\xmx\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "numpy": "1.26.4",
+          "scipy": "1.16.1",
+          "pandas": "2.3.0",
+          "matplotlib": "3.10.1",
+          "tqdm": "4.67.1",
+          "blas_config": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /c/opt/64/include\n    lib directory: /c/opt/64/lib\n    name: openblas64\n    openblas configuration: USE_64BITINT=1 DYNAMIC_ARCH=1 DYNAMIC_OLDER= NO_CBLAS=\n      NO_LAPACK= NO_LAPACKE= NO_AFFINITY=1 USE_OPENMP= SKYLAKEX MAX_THREADS=2\n    pc file directory: C:/opt/64/lib/pkgconfig\n    version: 0.3.23.dev\n  lapack:\n    detection method: internal\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: dep3179274605568\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: 1.26.4\nCompilers:\n  c:\n    commands: cl\n    linker: link\n    name: msvc\n    version: 19.29.30153\n  c++:\n    commands: cl\n    linker: link\n    name: msvc\n    version: 19.29.30153\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.0.8\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: windows\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: windows\nPython Information:\n  path: C:\\Users\\runneradmin\\AppData\\Local\\Temp\\cibw-run-g7slqwov\\cp312-win_amd64\\build\\venv\\Scripts\\python.exe\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  not found:\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n\n",
+          "threads": {
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "BLIS_NUM_THREADS": "1"
+          }
+        },
+        "environment_hash": "15f4587a08b678450d736ee2f93ac3f4976851356d8ed2e150533c63030b212d"
+      },
+      {
+        "n": 12,
+        "p": 4,
+        "M": 64,
+        "B": 3,
+        "replicate": 1,
+        "small": true,
+        "implementation_hash": "8e6d441ad5f326bb52e7a6a39ccd72e1a30b58f1baadb3407897a3374519d348",
+        "seconds": 0.03326250000100117,
+        "peak_memory_mb": 95.9375,
+        "method_seconds": {
+          "ours": 0.005159100008313544,
+          "xue_s5": 0.006711099995300174,
+          "xue_s11": 0.007804599998053163,
+          "xue_s21": 0.009111000006669201
+        },
+        "data_id": "c8172ec570197f720bff0306d6cedce376f3ecad52404d3a95134b56381f63f4",
+        "data_sha256": "be5d03dfc4fb70e1d2d59c68aa8ac9d301e8d2b8d248fe28d7e1346d408cba05",
+        "environment": {
+          "python": "3.12.8",
+          "executable": "C:\\Users\\xmx\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "numpy": "1.26.4",
+          "scipy": "1.16.1",
+          "pandas": "2.3.0",
+          "matplotlib": "3.10.1",
+          "tqdm": "4.67.1",
+          "blas_config": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /c/opt/64/include\n    lib directory: /c/opt/64/lib\n    name: openblas64\n    openblas configuration: USE_64BITINT=1 DYNAMIC_ARCH=1 DYNAMIC_OLDER= NO_CBLAS=\n      NO_LAPACK= NO_LAPACKE= NO_AFFINITY=1 USE_OPENMP= SKYLAKEX MAX_THREADS=2\n    pc file directory: C:/opt/64/lib/pkgconfig\n    version: 0.3.23.dev\n  lapack:\n    detection method: internal\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: dep3179274605568\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: 1.26.4\nCompilers:\n  c:\n    commands: cl\n    linker: link\n    name: msvc\n    version: 19.29.30153\n  c++:\n    commands: cl\n    linker: link\n    name: msvc\n    version: 19.29.30153\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.0.8\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: windows\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: windows\nPython Information:\n  path: C:\\Users\\runneradmin\\AppData\\Local\\Temp\\cibw-run-g7slqwov\\cp312-win_amd64\\build\\venv\\Scripts\\python.exe\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  not found:\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n\n",
+          "threads": {
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "BLIS_NUM_THREADS": "1"
+          }
+        },
+        "environment_hash": "15f4587a08b678450d736ee2f93ac3f4976851356d8ed2e150533c63030b212d"
+      }
+    ],
+    "assumptions": "Two B500 replicates per actual shape; per-shape maximum with 2x scheduling safety factor; family variation and queue time remain uncertain."
+  },
+  "formal_simulation_run": false,
+  "remote_operations": false,
+  "implementation_hash": "8e6d441ad5f326bb52e7a6a39ccd72e1a30b58f1baadb3407897a3374519d348"
+}

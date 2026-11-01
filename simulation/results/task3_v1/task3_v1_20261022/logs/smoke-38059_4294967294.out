@@ -1,0 +1,4 @@
+3.9.25 (main, Nov  3 2025, 22:33:05) 
+[GCC 11.2.0]
+2.0.2 1.13.1 2.3.3 3.9.4 4.67.1
+{"phase": "smoke", "run_id": "494fcd355a558882265785eedcc991dceb1cc30a1d6e01c8ce2f4808c8c12bd9", "complete": true, "requested": 50, "completed": 50, "failures": []}

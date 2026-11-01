@@ -1,0 +1,41 @@
+{
+  "study": "task5_unified_v1",
+  "date": "2026-10-24",
+  "local_python": "3.12.8",
+  "task5_test_counts": {
+    "tests.test_task5_generators": 11,
+    "tests.test_task5_design": 11,
+    "tests.test_task5_workflow": 11,
+    "tests.test_task5_cluster": 9,
+    "tests.test_task5_package": 3
+  },
+  "task5_tests": 45,
+  "task3_task4_regressions": 44,
+  "total_passed": 89,
+  "smoke": {
+    "phase": "smoke",
+    "run_id": "cb032409b1aed30b08ae048f53a32d2f5bfd4d0e7779567b83cbba244719a4dc",
+    "requested": 5,
+    "completed": 5,
+    "complete": true,
+    "failures": []
+  },
+  "small_benchmark_datasets": 2,
+  "python39_grammar_checked": true,
+  "bash_syntax_and_dryrun_passed": true,
+  "powershell_dryrun_passed": true,
+  "frozen_sources_and_old_packages_unchanged": 27,
+  "formal_simulation_run": false,
+  "production_benchmark_run": false,
+  "remote_operations": false,
+  "implementation_hash": "8e6d441ad5f326bb52e7a6a39ccd72e1a30b58f1baadb3407897a3374519d348",
+  "planned_pilot_datasets": 9300,
+  "mandatory_confirmation_datasets": 5700,
+  "optional_extension_datasets": 3800,
+  "total_statistical_datasets": [
+    15000,
+    18800
+  ],
+  "production_benchmark_datasets": 8,
+  "clean_release_verification": "doc/task5_release_verification.json (external, completed after ZIP build)"
+}

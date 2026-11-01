@@ -1,0 +1,21 @@
+{
+  "package": "C:\\XiangMingXu\\26-27\u79cb\u5b63\\HDF\\high_dimension_functional_data_covariance\\dist\\covariance_task5_unified_v1_20261024.zip",
+  "sha256": "0368677ca27d4f56f9bfddd8ff2065d73d67f88e0a5af57b43dd5fe976d8c810",
+  "verified_members": 104,
+  "release": "C:\\Users\\xmx\\AppData\\Local\\Temp\\task5_clean_release_1t51oyq8\\release",
+  "clean_output": "C:\\Users\\xmx\\AppData\\Local\\Temp\\task5_clean_release_1t51oyq8\\results",
+  "implementation_hash": "8e6d441ad5f326bb52e7a6a39ccd72e1a30b58f1baadb3407897a3374519d348",
+  "clean_package_task5_tests_passed": 45,
+  "clean_package_smoke": {
+    "phase": "smoke",
+    "run_id": "cb032409b1aed30b08ae048f53a32d2f5bfd4d0e7779567b83cbba244719a4dc",
+    "requested": 5,
+    "completed": 5,
+    "complete": true,
+    "failures": []
+  },
+  "shared_data_and_multiplier_replay_exact": true,
+  "existing_release_idempotent": true,
+  "formal_simulation_run": false,
+  "remote_operations": false
+}

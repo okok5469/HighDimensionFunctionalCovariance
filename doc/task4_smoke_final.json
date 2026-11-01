@@ -1,0 +1,19 @@
+{
+  "smoke": {
+    "phase": "smoke",
+    "run_id": "831997cd2937c78e45f07299e04b3445b06af57af19abaf0633d082dd179be04",
+    "complete": true,
+    "requested": 1,
+    "completed": 1,
+    "failures": []
+  },
+  "implementation_hash": "01373da1462a6267aaeb6087c89bd09a4e1d031cffab80affdbe242be758f9ae",
+  "B": 3,
+  "datasets": 1,
+  "shape": [
+    200,
+    20,
+    64
+  ],
+  "worker_replay": true
+}

@@ -1,0 +1,7 @@
+{
+  "study": "legacy_cross_v1.1",
+  "entry": "simulation.covariance_experiments",
+  "profile": "formal",
+  "configuration": "simulation/configs/formal.json",
+  "default_task3_pipeline": false
+}

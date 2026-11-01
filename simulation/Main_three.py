@@ -17,7 +17,7 @@ import time
 import pandas as pd
 from tqdm import tqdm
 from simulation.data_generator_three import create_dataset_M3
-from common.xue_helper import run_xue_test, S_XUE_DEFAULT
+from common.xue_helper import run_xue_cross_test, S_XUE_DEFAULT
 from common.statistic_calculator_517 import covariance_test
 import concurrent.futures
 import multiprocessing
@@ -35,7 +35,7 @@ TEST_MODE  = False        # True=快速测试; False=正式运行
 S_XUE      = S_XUE_DEFAULT  # 【新增】Xue 方法基展开截断项数(不要用 M!)
 ALPHA      = 0.05           # 【新增】显著性水平
 
-OUTPUT_DIR = SIMULATION_RESULTS_DIR / 'model3'
+OUTPUT_DIR = SIMULATION_RESULTS_DIR / 'model3' / 'xue-audit-v1'
 
 # ----------------- 日志 -----------------
 logging.basicConfig(level=logging.INFO,
@@ -164,9 +164,12 @@ def execute_single_task(task):
 
             # ----- Xue 方法（先做基展开!） -----
             t0 = time.time()
-            Tn_x, tau_x, pval_x = run_xue_test(Y, s=S_XUE, alpha=ALPHA)
+            xue = run_xue_cross_test(Y, s=S_XUE, alpha=ALPHA)
+            if xue['status'] != 'ok':
+                raise ValueError(f"{xue['status']}: {xue['failure_reason']}")
+            Tn_x, tau_x, pval_x = xue['T'], xue['critical_T'], xue['p_value']
             time_xue += time.time() - t0
-            if pval_x < ALPHA:
+            if xue['reject']:
                 reject_xue += 1
 
         total_time = time.time() - start_time
@@ -175,6 +178,15 @@ def execute_single_task(task):
 
         # ---- 构建结果 ----
         common = {
+            'xue_method': 'Xue-1S-EV-cross-zero',
+            'xue_version': 'xue-audit-v1',
+            'xue_tail_arithmetic': 'stable_expm1',
+            'xue_theory': 'Gaussian innovations with MA(1) dependence across observations; iid EV theory is not established for this design',
+            'xue_n': task['n'], 'xue_p': task['p'], 'xue_s': S_XUE,
+            'xue_d': task['p'] * S_XUE, 'xue_status': 'ok',
+            'xue_covariance_denominator': 'n', 'xue_mean_mode': 'estimate',
+            'xue_projection_id': 'fixed_fourier_rectangle_1_over_M',
+            'xue_basis_id': 'fixed_fourier_phi_0_to_s_minus_1',
             'time_total':  total_time,
             'time_ours':   time_ours,
             'time_xue':    time_xue,
@@ -223,8 +235,7 @@ def execute_single_task(task):
                      f"{task} | 错误：{str(e)}")
         import traceback
         logger.error(traceback.format_exc())
-        return {'error': str(e), 'task': task,
-                'experiment': task.get('experiment')}
+        raise
 
 
 # ----------------- 中间保存 -----------------
@@ -272,14 +283,12 @@ def run_experiment():
                                 total=len(experiment_groups[exp_num]),
                                 desc=f"实验{exp_num}进度"):
                     res = fut.result()
-                    if 'error' not in res:
-                        group_results.append(res)
+                    group_results.append(res)
         else:
             logger.info(f"实验{exp_num}: 串行计算")
             for t in tqdm(experiment_groups[exp_num], desc=f"实验{exp_num}进度"):
                 res = execute_single_task(t)
-                if 'error' not in res:
-                    group_results.append(res)
+                group_results.append(res)
 
         all_results.extend(group_results)
 

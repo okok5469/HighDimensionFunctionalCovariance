@@ -1,0 +1,304 @@
+{
+  "action": "done_no_eligible_candidates",
+  "selection": {
+    "study": "task4_fixed_methods_v1",
+    "ranking": [
+      {
+        "spec_id": "coherent_all",
+        "tau": 0.6,
+        "scenario_id": "5f26e6e60e5ce3cb7b29",
+        "null_group_id": "spectrum_flat_b0",
+        "rejections": {
+          "ours": 50,
+          "xue_s5": 3,
+          "xue_s11": 6,
+          "xue_s21": 8
+        },
+        "power_ours": 1.0,
+        "differences": {
+          "xue_s5": 0.94,
+          "xue_s11": 0.88,
+          "xue_s21": 0.84
+        },
+        "delta_min": 0.84,
+        "useful": false,
+        "high_power": true,
+        "saturated": false,
+        "calibration_suspect_methods": [
+          "xue_s21"
+        ],
+        "exclusion_reasons": [
+          "primary_calibration_suspect"
+        ],
+        "rank": 1,
+        "selected": false,
+        "not_selected_reason": "primary_calibration_suspect"
+      },
+      {
+        "spec_id": "local_fejer",
+        "tau": 0.6,
+        "scenario_id": "fa182d49f25b9cf324b9",
+        "null_group_id": "spectrum_flat_b0",
+        "rejections": {
+          "ours": 50,
+          "xue_s5": 9,
+          "xue_s11": 9,
+          "xue_s21": 9
+        },
+        "power_ours": 1.0,
+        "differences": {
+          "xue_s5": 0.82,
+          "xue_s11": 0.82,
+          "xue_s21": 0.82
+        },
+        "delta_min": 0.82,
+        "useful": false,
+        "high_power": true,
+        "saturated": false,
+        "calibration_suspect_methods": [
+          "xue_s21"
+        ],
+        "exclusion_reasons": [
+          "primary_calibration_suspect"
+        ],
+        "rank": 2,
+        "selected": false,
+        "not_selected_reason": "primary_calibration_suspect"
+      },
+      {
+        "spec_id": "spectrum_fast_b4",
+        "tau": 0.45,
+        "scenario_id": "120dc7e41620312850af",
+        "null_group_id": "spectrum_fast_b4",
+        "rejections": {
+          "ours": 50,
+          "xue_s5": 50,
+          "xue_s11": 50,
+          "xue_s21": 50
+        },
+        "power_ours": 1.0,
+        "differences": {
+          "xue_s5": 0.0,
+          "xue_s11": 0.0,
+          "xue_s21": 0.0
+        },
+        "delta_min": 0.0,
+        "useful": false,
+        "high_power": true,
+        "saturated": true,
+        "calibration_suspect_methods": [
+          "xue_s21"
+        ],
+        "exclusion_reasons": [
+          "primary_calibration_suspect"
+        ],
+        "rank": 3,
+        "selected": false,
+        "not_selected_reason": "primary_calibration_suspect"
+      },
+      {
+        "spec_id": "spectrum_fast_b4",
+        "tau": 0.6,
+        "scenario_id": "3fb4e4dc6504a05c72d0",
+        "null_group_id": "spectrum_fast_b4",
+        "rejections": {
+          "ours": 50,
+          "xue_s5": 50,
+          "xue_s11": 50,
+          "xue_s21": 50
+        },
+        "power_ours": 1.0,
+        "differences": {
+          "xue_s5": 0.0,
+          "xue_s11": 0.0,
+          "xue_s21": 0.0
+        },
+        "delta_min": 0.0,
+        "useful": false,
+        "high_power": true,
+        "saturated": true,
+        "calibration_suspect_methods": [
+          "xue_s21"
+        ],
+        "exclusion_reasons": [
+          "primary_calibration_suspect"
+        ],
+        "rank": 4,
+        "selected": false,
+        "not_selected_reason": "primary_calibration_suspect"
+      },
+      {
+        "spec_id": "coherent_all",
+        "tau": 0.45,
+        "scenario_id": "07d48c40d57cb11189b9",
+        "null_group_id": "spectrum_flat_b0",
+        "rejections": {
+          "ours": 38,
+          "xue_s5": 5,
+          "xue_s11": 5,
+          "xue_s21": 7
+        },
+        "power_ours": 0.76,
+        "differences": {
+          "xue_s5": 0.66,
+          "xue_s11": 0.66,
+          "xue_s21": 0.62
+        },
+        "delta_min": 0.62,
+        "useful": false,
+        "high_power": false,
+        "saturated": false,
+        "calibration_suspect_methods": [
+          "xue_s21"
+        ],
+        "exclusion_reasons": [
+          "primary_calibration_suspect"
+        ],
+        "rank": 5,
+        "selected": false,
+        "not_selected_reason": "primary_calibration_suspect"
+      },
+      {
+        "spec_id": "local_fejer",
+        "tau": 0.45,
+        "scenario_id": "ca235f67ea52aa3f40d7",
+        "null_group_id": "spectrum_flat_b0",
+        "rejections": {
+          "ours": 33,
+          "xue_s5": 2,
+          "xue_s11": 6,
+          "xue_s21": 3
+        },
+        "power_ours": 0.66,
+        "differences": {
+          "xue_s5": 0.62,
+          "xue_s11": 0.54,
+          "xue_s21": 0.6
+        },
+        "delta_min": 0.54,
+        "useful": false,
+        "high_power": false,
+        "saturated": false,
+        "calibration_suspect_methods": [
+          "xue_s21"
+        ],
+        "exclusion_reasons": [
+          "primary_calibration_suspect"
+        ],
+        "rank": 6,
+        "selected": false,
+        "not_selected_reason": "primary_calibration_suspect"
+      },
+      {
+        "spec_id": "local_fejer",
+        "tau": 0.3,
+        "scenario_id": "d239d85ee5bf83be1c99",
+        "null_group_id": "spectrum_flat_b0",
+        "rejections": {
+          "ours": 6,
+          "xue_s5": 4,
+          "xue_s11": 6,
+          "xue_s21": 6
+        },
+        "power_ours": 0.12,
+        "differences": {
+          "xue_s5": 0.04,
+          "xue_s11": 0.0,
+          "xue_s21": 0.0
+        },
+        "delta_min": 0.0,
+        "useful": false,
+        "high_power": false,
+        "saturated": false,
+        "calibration_suspect_methods": [
+          "xue_s21"
+        ],
+        "exclusion_reasons": [
+          "power_below_0.60",
+          "primary_calibration_suspect"
+        ],
+        "rank": 7,
+        "selected": false,
+        "not_selected_reason": "power_below_0.60;primary_calibration_suspect"
+      },
+      {
+        "spec_id": "coherent_all",
+        "tau": 0.3,
+        "scenario_id": "fd5a4d8c334fe2e3cb9f",
+        "null_group_id": "spectrum_flat_b0",
+        "rejections": {
+          "ours": 2,
+          "xue_s5": 5,
+          "xue_s11": 4,
+          "xue_s21": 2
+        },
+        "power_ours": 0.04,
+        "differences": {
+          "xue_s5": -0.06,
+          "xue_s11": -0.04,
+          "xue_s21": 0.0
+        },
+        "delta_min": -0.06,
+        "useful": false,
+        "high_power": false,
+        "saturated": false,
+        "calibration_suspect_methods": [
+          "xue_s21"
+        ],
+        "exclusion_reasons": [
+          "power_below_0.60",
+          "primary_calibration_suspect"
+        ],
+        "rank": 8,
+        "selected": false,
+        "not_selected_reason": "power_below_0.60;primary_calibration_suspect"
+      }
+    ],
+    "calibration": {
+      "spectrum_flat_b0": {
+        "suspect_methods": [
+          "xue_s21"
+        ],
+        "calibration_suspect": true,
+        "primary_suspect": true,
+        "rejections": {
+          "ours": 0,
+          "xue_s5": 10,
+          "xue_s11": 9,
+          "xue_s21": 12
+        },
+        "planned": 100
+      },
+      "spectrum_fast_b4": {
+        "suspect_methods": [
+          "xue_s21"
+        ],
+        "calibration_suspect": true,
+        "primary_suspect": true,
+        "rejections": {
+          "ours": 1,
+          "xue_s5": 4,
+          "xue_s11": 8,
+          "xue_s21": 14
+        },
+        "planned": 100
+      }
+    },
+    "selected_model": null,
+    "selected_reference": null,
+    "fallback_required": false,
+    "fallback_complete": false,
+    "exploration_datasets": 600,
+    "decision": "no_eligible_interval",
+    "thresholds": {
+      "minimum_power": 0.6,
+      "preferred_power": 0.8,
+      "maximum_gap": 0.1,
+      "calibration_suspect_above": 0.1,
+      "formal_epsilon": 0.05
+    }
+  },
+  "pilot_run_id": "58d72ed8228d88d97cee520a8b5e7f4aab79f4db0b6c0eee767750b6d542552d",
+  "fallback_triggered": false,
+  "implementation_hash": "01373da1462a6267aaeb6087c89bd09a4e1d031cffab80affdbe242be758f9ae"
+}

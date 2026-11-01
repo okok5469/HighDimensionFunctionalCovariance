@@ -1,0 +1,37 @@
+{
+  "pilot_calibration_max": 0.12,
+  "confirmation_calibration_upper": 0.08,
+  "alpha": 0.05,
+  "confidence": 0.95,
+  "epsilon": 0.05,
+  "max_candidates": 2,
+  "max_specifications": 4,
+  "references": [
+    "spectrum_fast_b4",
+    "legacy_M2_full_reference"
+  ],
+  "selection_score": "mean_over_tau(power_ours-max_fixed_xue_power)",
+  "seed_base": 20261021,
+  "main_shape": [
+    200,
+    20
+  ],
+  "alternative_taus": [
+    0.15,
+    0.3
+  ],
+  "null_repeats": 500,
+  "alternative_repeats": 300,
+  "dimension_shapes": [
+    [
+      400,
+      20
+    ],
+    [
+      200,
+      50
+    ]
+  ],
+  "dimension_tau": 0.3,
+  "multiple_testing": "Bonferroni_over_all_locked_alternative_pairs"
+}

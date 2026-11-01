@@ -1,0 +1,4 @@
+3.9.25 (main, Nov  3 2025, 22:33:05) 
+[GCC 11.2.0]
+2.0.2 1.13.1 2.3.3 3.9.4 4.67.1
+{"run_id": "f4fc4b8ebec1eff34377fc012e104d23325811f5e2f19adbf0453774af9341f7", "chunk_size": 10, "chunks": 125, "array": "0-124%8", "concurrency": 8, "memory_mb": 1246, "seconds_per_chunk": 1800, "assumptions": "Same-(n,p) M64 flat timings extrapolated to all families and legacy M30; family and queue variation require a 2x scheduling safety factor; ideal wall time excludes queue wait.", "worker_hours_estimate": 3.5621476327327803, "wall_hours_estimate_at_8": 0.44526845409159754}

@@ -13,41 +13,32 @@ xue_test.py
   - τ_α = -log(8π) - 2 log log(1/(1-α))
 """
 import numpy as np
+from common.statistic_calculator_xue import (
+    xue_cross_zero, xue_critical_value as _critical, xue_pvalue as _pvalue,
+)
+
+
+def _audited_cross(a, alpha=0.05):
+    result = xue_cross_zero(a, s=np.asarray(a).shape[-1], alpha=alpha)
+    if result['status'] != 'ok':
+        raise ValueError(f"Xue cross test failed: {result['failure_reason']}")
+    return result
 
 def compute_xue_statistic(a):
     """a: (n, p, q) 基系数张量"""
-    n, p, q = a.shape
-    a_c = a - a.mean(axis=0, keepdims=True)
-    af  = a_c.reshape(n, p*q)
-    # σ̂ = E[XY]
-    sigma = (af.T @ af) / n                      # (pq, pq)
-    # E[X^2 Y^2]
-    asq  = (a_c**2).reshape(n, p*q)
-    m_raw = (asq.T @ asq) / n
-    # m̂ = Var(XY) = E[X^2Y^2] - E[XY]^2
-    m_hat = m_raw - sigma**2
-    eps = 1e-12
-    T = n * sigma**2 / np.maximum(m_hat, eps)    # (pq, pq)
-    # 排除 j1 == j2
-    T = T.reshape(p, q, p, q)
-    for j in range(p): T[j, :, j, :] = -np.inf
-    T_max = float(T.max())
-    ps = p * q
-    Tn  = np.log(np.log(ps)) - 4*np.log(ps) + T_max
-    return Tn, T_max
+    result = _audited_cross(a)
+    return result['T'], result['Q']
 
 def xue_critical_value(alpha=0.05):
-    return -np.log(8*np.pi) - 2*np.log(np.log(1/(1-alpha)))
+    return _critical(alpha)
 
 def xue_pvalue(Tn):
     """1 - F(Tn)，对极大 Tn 用 expm1 保数值稳定"""
-    log_F = -(8*np.pi)**(-0.5) * np.exp(-Tn/2)
-    return float(-np.expm1(log_F))
+    return _pvalue(Tn)
 
 def xue_test(a, alpha=0.05):
     n, p, q = a.shape
-    Tn, T_max = compute_xue_statistic(a)
-    tau = xue_critical_value(alpha)
-    pv  = xue_pvalue(Tn)
-    return dict(Tn=Tn, T_max_raw=T_max, tau_alpha=tau,
-                p_value=pv, reject=Tn > tau, n=n, p=p, q=q)
+    result = _audited_cross(a, alpha)
+    return dict(result, Tn=result['T'], T_max_raw=result['Q'],
+                tau_alpha=result['critical_T'], n=n, p=p, q=q,
+                version='xue-audit-v1')

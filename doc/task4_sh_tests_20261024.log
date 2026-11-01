@@ -1,0 +1,27 @@
+2026-10-24 13:25:30 SMOKE
+2026-10-24 13:25:30 INIT
+2026-10-24 13:25:30 BENCHMARK B500: first production record may take time
+2026-10-24 13:25:30 pilot CHUNK 0 START (1 records)
+2026-10-24 13:25:30 pilot CHUNK 0 SAVED
+2026-10-24 13:25:30 pilot COLLECT
+2026-10-24 13:25:30 fallback CHUNK 0 START (1 records)
+2026-10-24 13:25:30 fallback CHUNK 0 SAVED
+2026-10-24 13:25:30 fallback COLLECT
+2026-10-24 13:25:30 confirm CHUNK 0 START (1 records)
+2026-10-24 13:25:30 confirm CHUNK 0 SAVED
+2026-10-24 13:25:30 confirm COLLECT
+2026-10-24 13:25:30 DONE
+2026-10-24 13:25:30 SMOKE
+2026-10-24 13:25:30 INIT
+2026-10-24 13:25:30 BENCHMARK B500: first production record may take time
+2026-10-24 13:25:30 pilot COLLECT
+2026-10-24 13:25:30 confirm COLLECT
+2026-10-24 13:25:30 DONE
+Submitted job 123
+LOG C:\Users\xmx\AppData\Local\Temp\tmp5r5k83oo\logs\batch-123.log
+RESULTS C:\Users\xmx\AppData\Local\Temp\tmp5r5k83oo
+.....................................
+----------------------------------------------------------------------
+Ran 37 tests in 16.661s
+
+OK

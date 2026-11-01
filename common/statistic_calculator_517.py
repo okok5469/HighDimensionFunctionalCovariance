@@ -1,139 +1,198 @@
+﻿"""Functional covariance tests: method v1.1, data axes (subjects, channels, grid)."""
 import numpy as np
-import time
-from tqdm import tqdm
+
+
+def _prepare_group(data):
+    if np.iscomplexobj(data):
+        raise ValueError("data must be real-valued")
+    data = np.asarray(data, dtype=float)
+    if data.ndim != 3:
+        raise ValueError("data must have shape (subjects, channels, grid)")
+    n, p, M = data.shape
+    if n < 2 or p < 1 or M < 1 or not np.isfinite(data).all():
+        raise ValueError("invalid sample size, shape or non-finite data")
+    D = (data - data.mean(axis=0, keepdims=True)).reshape(n, p * M)
+    gram = D.T @ D
+    return n, p, M, D, gram / (n - 1), gram / n
+
+
+def _flat_mask(p, M, channel_pairs=None):
+    pairs = np.ones((p, p), dtype=bool) if channel_pairs is None else np.asarray(channel_pairs)
+    if pairs.shape != (p, p) or pairs.dtype != np.dtype(bool):
+        raise ValueError("channel_pairs must be a boolean (p, p) mask")
+    if not pairs.any():
+        raise ValueError("the tested index set must be non-empty")
+    channel = np.repeat(np.arange(p), M)
+    return pairs.copy(), pairs[channel[:, None], channel[None, :]]
+
+
+def _validate_grid(grid, M):
+    if grid is None:
+        return None
+    grid = np.asarray(grid, dtype=float)
+    if grid.shape != (M,) or not np.isfinite(grid).all() or np.any(np.diff(grid) <= 0):
+        raise ValueError("grid must contain M finite, strictly increasing coordinates")
+    return grid.copy()
+
+
+def _validate_options(B, alpha):
+    if isinstance(B, (bool, np.bool_)) or not isinstance(B, (int, np.integer)) or B < 1:
+        raise ValueError("B must be a positive integer")
+    if not np.isscalar(alpha) or not 0 < alpha < 1:
+        raise ValueError("alpha must be between 0 and 1")
+
+
+def _weights(multipliers, B, n):
+    if np.iscomplexobj(multipliers):
+        raise ValueError("multipliers must be real-valued")
+    weights = np.asarray(multipliers, dtype=float)
+    if weights.shape != (B, n) or not np.isfinite(weights).all():
+        raise ValueError("multipliers must have finite shape (B, subjects)")
+    return weights
+
+
+def _get_rng(seed, rng):
+    if rng is not None and seed is not None:
+        raise ValueError("specify only one of seed and rng")
+    return np.random.default_rng(seed if rng is None else rng)
+
+
+def _centered_weighted_outer(D, qbar, weights):
+    # Empirical outer-product centering; raw weights are never changed.
+    return D.T @ (weights[:, None] * D) - weights.sum() * qbar
+
+
+def _decision(T_obs, boot, alpha):
+    boot = np.asarray(boot, dtype=float)
+    if boot.ndim != 1 or len(boot) < 1 or not np.isfinite(boot).all():
+        raise ValueError("bootstrap statistics must be a non-empty finite vector")
+    _validate_options(len(boot), alpha)
+    if not np.isfinite(T_obs):
+        raise ValueError("observed statistic must be finite")
+    B = len(boot)
+    pvalue = (1 + np.count_nonzero(boot >= T_obs)) / (B + 1)
+    # Match p < alpha exactly, including B=9, alpha=0.8 floating boundaries.
+    counts = np.arange(B + 1)
+    allowed = counts[(1 + counts) / (B + 1) < alpha]
+    k = B - int(allowed[-1]) if allowed.size else B + 1
+    critical = np.partition(boot, k - 1)[k - 1] if k <= B else np.inf
+    return {"statistic": float(T_obs), "pvalue": float(pvalue),
+            "critical_value": float(critical), "reject": bool(pvalue < alpha),
+            "bootstrap_statistics": boot, "critical_rank": int(k)}
+
+
+def _metadata(result, n, p, M, pairs, grid, alpha, B, config_id, m=None):
+    result.update({
+        "method_version": "v1.1",
+        "method": "covariance_one_sample" if m is None else "covariance_two_sample_independent",
+        "denominator": {"covariance": "n-1" if m is None else "n-1,m-1", "outer_mean": "n" if m is None else "n,m", "bootstrap": "n-1" if m is None else "n-1,m-1"},
+        "n": int(n), "p": int(p), "M": int(M), "B": int(B), "alpha": float(alpha),
+        "channel_pairs": pairs, "grid": grid, "config_id": config_id,
+        "critical_value_rule": "finite_B_pvalue_strict_float_comparison",
+        "random_rule": "local_Generator_raw_iid_normal_or_fixed_multipliers"})
+    if m is not None:
+        result["m"] = int(m)
+    return result
+
+
+def covariance_one_sample(data, gamma0, channel_pairs=None, alpha=0.05, B=500,
+                          seed=None, *, multipliers=None, grid=None, rng=None,
+                          config_id=None):
+    """Test deterministic target (p,p,M,M); None mask tests all channel pairs.
+
+    Fixed raw multipliers (B,n) are optional for auditing. seed accepts a local
+    Generator or integer. Global random state is never consumed or modified.
+    """
+    _validate_options(B, alpha)
+    n, p, M, D, cov, qbar = _prepare_group(data)
+    grid = _validate_grid(grid, M)
+    pairs, mask = _flat_mask(p, M, channel_pairs)
+    if np.iscomplexobj(gamma0):
+        raise ValueError("gamma0 must be real-valued")
+    target = np.asarray(gamma0, dtype=float)
+    if target.shape != (p, p, M, M) or not np.isfinite(target).all():
+        raise ValueError("gamma0 must have finite shape (p, p, M, M)")
+    target_flat = target.transpose(0, 2, 1, 3).reshape(p * M, p * M)
+    observed = np.sqrt(n) * np.max(np.abs((cov - target_flat)[mask]))
+    generator = _get_rng(seed, rng)
+    fixed = None if multipliers is None else _weights(multipliers, B, n)
+    boot = np.empty(B)
+    for b in range(B):
+        xi = generator.standard_normal(n) if fixed is None else fixed[b]
+        G = np.sqrt(n) / (n - 1) * _centered_weighted_outer(D, qbar, xi)
+        boot[b] = np.max(np.abs(G[mask]))
+    return _metadata(_decision(observed, boot, alpha), n, p, M, pairs, grid, alpha, B, config_id)
+
+
+def covariance_two_sample(data_x, data_y, channel_pairs=None, alpha=0.05,
+                          B=500, seed=None, *, multipliers=None, grid=None,
+                          grid_y=None, rng=None, config_id=None):
+    """Independent groups, separately centered, with optional fixed (xi,eta).
+
+    grid is common to both groups; if supplied, grid_y must agree exactly.
+    Separate draws are used for both groups even when their sample sizes match.
+    """
+    _validate_options(B, alpha)
+    n, p, M, Dx, cov_x, qbar_x = _prepare_group(data_x)
+    m, py, My, Dy, cov_y, qbar_y = _prepare_group(data_y)
+    if (p, M) != (py, My):
+        raise ValueError("both groups must have the same channels and grid")
+    grid = _validate_grid(grid, M)
+    grid_y = _validate_grid(grid_y, M)
+    if grid_y is not None and (grid is None or not np.array_equal(grid, grid_y)):
+        raise ValueError("both groups must use identical grid coordinates")
+    pairs, mask = _flat_mask(p, M, channel_pairs)
+    scale = np.sqrt(n * m / (n + m))
+    observed = scale * np.max(np.abs((cov_x - cov_y)[mask]))
+    generator = _get_rng(seed, rng)
+    fixed = None
+    if multipliers is not None:
+        if not isinstance(multipliers, (tuple, list)) or len(multipliers) != 2:
+            raise ValueError("two-sample multipliers must be (xi, eta)")
+        fixed = (_weights(multipliers[0], B, n), _weights(multipliers[1], B, m))
+    boot = np.empty(B)
+    for b in range(B):
+        xi = generator.standard_normal(n) if fixed is None else fixed[0][b]
+        eta = generator.standard_normal(m) if fixed is None else fixed[1][b]
+        G = scale * (_centered_weighted_outer(Dx, qbar_x, xi) / (n - 1)
+                     - _centered_weighted_outer(Dy, qbar_y, eta) / (m - 1))
+        boot[b] = np.max(np.abs(G[mask]))
+    return _metadata(_decision(observed, boot, alpha), n, p, M, pairs, grid, alpha, B, config_id, m=m)
+
 
 def calculate_u_statistic_matrices(Y):
-    """计算样本协方差矩阵（用 BLAS GEMM 加速版）"""
-    n, p, M = Y.shape
-    Y_centered = Y - np.mean(Y, axis=0, keepdims=True)
-
-    # 等价于 einsum('kis,kjt->ijst', ...)，但走 BLAS，可加速 10~50 倍
-    # sigma[i,j,s,t] = sum_k Y_c[k,i,s] * Y_c[k,j,t]
-    Y_flat = Y_centered.reshape(n, p * M)              # (n, p*M)
-    sigma_2d = (Y_flat.T @ Y_flat) / (n - 1)           # (p*M, p*M)，调用 GEMM
-    # 还原为 (p, p, M, M)
-    sigma_hat = sigma_2d.reshape(p, M, p, M).transpose(0, 2, 1, 3)
-    return sigma_hat
+    """Unbiased covariance, equal to the legacy pair-difference U expression."""
+    _, p, M, _, cov, _ = _prepare_group(Y)
+    return cov.reshape(p, M, p, M).transpose(0, 2, 1, 3)
 
 
 def compute_Tn(sigma_hat, n):
-    """
-    计算检验统计量 Tn = sqrt(n) * max|sigma_ij| (i != j)
-    支持 4D 输入 (p, p, M, M)
-    
-    修复策略：避免创建巨大的 4D 布尔掩码，改用索引提取法。
-    """
-    # 确保输入是 numpy 数组
-    sigma_hat = np.asarray(sigma_hat)
-    
+    """Legacy zero-cross statistic over all double time coordinates."""
+    sigma_hat = np.asarray(sigma_hat, dtype=float)
     if sigma_hat.ndim != 4:
-        raise ValueError(f"Expected 4D array (p, p, M, M), got {sigma_hat.ndim}D")
+        raise ValueError("sigma_hat must have shape (p,p,M,M)")
+    p, py, M, My = sigma_hat.shape
+    if p != py or M != My or M < 1 or not np.isfinite(sigma_hat).all() or n < 2:
+        raise ValueError("invalid covariance shape, sample size or non-finite values")
+    pairs, _ = _flat_mask(p, M, ~np.eye(p, dtype=bool))
+    return float(np.sqrt(n) * np.max(np.abs(sigma_hat[pairs])))
 
-    p, p2, M, M2 = sigma_hat.shape
-    if p != p2 or M != M2:
-        raise ValueError("Input shape must be (p, p, M, M)")
 
-    # 方法：将前两个维度 (p, p) 展平为 (p*p)，保留后两个维度
-    # 新形状: (p*p, M, M)
-    sigma_flat = sigma_hat.reshape(p * p, M, M)
+def _legacy_result(Y, B, seed):
+    data = np.asarray(Y)
+    if data.ndim != 3:
+        raise ValueError("data must have shape (subjects, channels, grid)")
+    p, M = data.shape[1:]
+    return covariance_one_sample(data, np.zeros((p, p, M, M)), ~np.eye(p, dtype=bool), B=B, seed=seed)
 
-    # 生成 (p, p) 的对角线掩码 (2D)
-    # mask_2d[i, j] = True if i == j
-    mask_2d_diag = np.eye(p, dtype=bool)
-    
-    # 我们想要的是 i != j，所以取反
-    # 然后展平这个掩码以匹配 sigma_flat 的第一维
-    mask_keep = ~mask_2d_diag.reshape(p * p)
 
-    # 提取所有 i != j 的切片
-    # non_diag_slices 的形状将是 (num_non_diag_pairs, M, M)
-    non_diag_slices = sigma_flat[mask_keep]
+def multiplier_bootstrap(Y, B=500, seed=None):
+    """Legacy bootstrap; returns the matching alpha=0.05 critical value."""
+    result = _legacy_result(Y, B, seed)
+    return result["critical_value"], result["bootstrap_statistics"]
 
-    if non_diag_slices.size == 0:
-        return 0.0
 
-    # 在所有剩余元素中找绝对值的最大值
-    max_val = np.max(np.abs(non_diag_slices))
-
-    Tn = np.sqrt(n) * max_val
-    return Tn
-
-def multiplier_bootstrap(Y, B=300, seed=None):
-    """计算临界值 - BLAS 加速版"""
-    if seed is not None:
-        np.random.seed(seed)
-
-    n, p, M = Y.shape
-
-    # 中心化（不标准化）
-    Y_centered = Y - np.mean(Y, axis=0, keepdims=True)
-
-    # 预先做好二维展开和非对角线掩码（循环外只算一次）
-    Y_flat = Y_centered.reshape(n, p * M)              # (n, p*M)
-    mask_2d_diag = np.eye(p, dtype=bool)
-    mask_keep = ~mask_2d_diag.reshape(p * p)           # (p*p,)
-
-    Tn_boots = np.zeros(B)
-    sqrt_n = np.sqrt(n)
-
-    for b in range(B):                                  # 去掉内层 tqdm
-        xi = np.random.randn(n)
-        xi -= xi.mean()
-
-        # A[k, :] = xi[k] * Y_flat[k, :]
-        A_flat = Y_flat * xi[:, None]                   # (n, p*M)
-
-        # 等价于 einsum('k,kis,kjt->ijst'，但走 BLAS GEMM
-        sigma_2d = (A_flat.T @ Y_flat) / (n - 1)        # (p*M, p*M)
-        sigma_hat = sigma_2d.reshape(p, M, p, M).transpose(0, 2, 1, 3)
-
-        # 取非对角块的最大绝对值
-        sigma_flat = sigma_hat.reshape(p * p, M, M)
-        non_diag = sigma_flat[mask_keep]
-        if non_diag.size == 0:
-            Tn_boots[b] = 0.0
-        else:
-            Tn_boots[b] = sqrt_n * np.max(np.abs(non_diag))
-
-    critical_value = np.percentile(Tn_boots, 95)
-    return critical_value, Tn_boots
-
-def covariance_test(Y,B=300,seed=None):
-    """执行协方差检验"""
-    n,p,M = Y.shape
-    Tn = compute_Tn(calculate_u_statistic_matrices(Y),n)
-    critical_value,Tn_boots = multiplier_bootstrap(Y,B=B,seed=seed)
-    p_value = (np.sum(Tn_boots >= Tn)+1) / (B+1)
-    return Tn,critical_value,p_value
-
-if __name__ == "__main__":
-    print("=== 高维函数型协方差检验测试 ===")
-    from simulation.data_generator_one import create_dataset
-
-    # 生成一个小数据集快速测试
-    data = create_dataset(n=30, p=20, M=20, q=5,  sigma_noise=0.1, h0=True, seed=42)
-    
-    import time
-    start = time.time()
-    Tn, crit, pval = covariance_test(data['Y'], B=200) # B设小点方便测试
-    end = time.time()
-    
-    print(f"Tn: {Tn:.4f}")
-    print(f"Critical Value (95%): {crit:.4f}")
-    print(f"P-value: {pval:.4f}")
-
-    print("\n=== 测试备择假设 (H1) ===")
-    # 生成带信号的数据 (h0=False)
-    # 假设您的 create_dataset 支持 s0 和 signal_strength 参数
-    data_h1 = create_dataset(
-        n=100, p=20, M=20, q=5, sigma_noise=0.1, 
-        h0=False, s0=4, signal_strength=0.5, seed=42 # 信号强度设大一点方便观察
-    )
-
-    Tn_h1, crit_h1, pval_h1 = covariance_test(data_h1['Y'], B=200)
-    print(f"H1 结果 -> Tn: {Tn_h1:.4f}, Critical: {crit_h1:.4f}, P-value: {pval_h1:.4f}")
-
-    if pval_h1 < 0.05:
-        print("✅ 成功拒绝 H1 (检验有效，检测到了信号！)")
-    else:
-        print("⚠️ 未能拒绝 H1 (可能是信号太弱，或样本量太小，或检验功效不足)")
+def covariance_test(Y, B=500, seed=None):
+    """Compatible (statistic, critical_value, pvalue) zero-cross test."""
+    result = _legacy_result(Y, B, seed)
+    return result["statistic"], result["critical_value"], result["pvalue"]

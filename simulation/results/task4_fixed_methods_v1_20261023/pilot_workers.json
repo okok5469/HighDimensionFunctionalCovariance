@@ -1,0 +1,12 @@
+{
+  "run_id": "58d72ed8228d88d97cee520a8b5e7f4aab79f4db0b6c0eee767750b6d542552d",
+  "chunk_size": 1,
+  "chunks": 600,
+  "array": "0-599%8",
+  "concurrency": 8,
+  "memory_mb": 477,
+  "seconds_per_chunk": 23,
+  "assumptions": "Same-(n,p) M64 flat timings extrapolated to all families and legacy M30; family and queue variation require a 2x scheduling safety factor; ideal wall time excludes queue wait.",
+  "worker_hours_estimate": 1.8811569114526112,
+  "wall_hours_estimate_at_8": 0.2351446139315764
+}

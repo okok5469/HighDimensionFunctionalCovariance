@@ -1,0 +1,13 @@
+{
+  "script": "dist\\task3_serial_recovery_v2.py",
+  "sha256": "00a0d3582cf6ba9504ae4217fed72f5c62f9d64ed65d6880662fec9c47350e2b",
+  "python39_grammar": true,
+  "cli_help_passed": true,
+  "offline_recovery_tests_passed": 11,
+  "scientific_release_files_changed": false,
+  "remote_submissions": 0,
+  "query_references": [
+    "https://slurm.schedmd.com/squeue.html",
+    "https://slurm.schedmd.com/sacct.html"
+  ]
+}

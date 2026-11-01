@@ -1,0 +1,20 @@
+/public/home/xjh/xmx/.conda/envs/myenv/lib/python3.9/site-packages/numpy/__config__.py:155: UserWarning: Install `pyyaml` for better output
+  warnings.warn("Install `pyyaml` for better output", stacklevel=1)
+Traceback (most recent call last):
+  File "/public/home/xjh/xmx/.conda/envs/myenv/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/public/home/xjh/xmx/.conda/envs/myenv/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/simulation/task3_experiments.py", line 470, in <module>
+    main()
+  File "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/simulation/task3_experiments.py", line 462, in main
+    result = actions[args.command]()
+  File "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/simulation/task3_experiments.py", line 454, in <lambda>
+    'worker': lambda: run_worker(args.output, args.phase, args.chunk_id, args.chunk_size, args.retry_failures),
+  File "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/simulation/task3_experiments.py", line 215, in run_worker
+    with io.record_lock(Path(root) / 'environment.lock'):
+  File "/public/home/xjh/xmx/.conda/envs/myenv/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/public/home/xjh/xmx/high_dimension_functional_data_covariance/releases/task3_v1_20261022/simulation/task3_io.py", line 63, in record_lock
+    fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable

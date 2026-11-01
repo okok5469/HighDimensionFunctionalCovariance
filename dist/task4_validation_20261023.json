@@ -1,0 +1,22 @@
+{
+  "package": "covariance_task4_fixed_methods_v1_20261023.zip",
+  "sha256": "7f880133c397f526cb97b61c579a8657c57b85aa0a21061179b2fd00e02df52d",
+  "task4_tests": 26,
+  "task3_tests": 45,
+  "formal_simulation_run": false,
+  "remote_operations": false,
+  "files": 82,
+  "implementation_hash": "01373da1462a6267aaeb6087c89bd09a4e1d031cffab80affdbe242be758f9ae",
+  "frozen_files_unchanged": 8,
+  "clean_package_smoke": {
+    "phase": "smoke",
+    "run_id": "831997cd2937c78e45f07299e04b3445b06af57af19abaf0633d082dd179be04",
+    "complete": true,
+    "requested": 1,
+    "completed": 1,
+    "failures": []
+  },
+  "clean_package_tests_passed": true,
+  "local_python": "3.12.8 (tags/v3.12.8:2dc476b, Dec  3 2024, 19:30:04) [MSC v.1942 64 bit (AMD64)]",
+  "external_checksum_verified": true
+}

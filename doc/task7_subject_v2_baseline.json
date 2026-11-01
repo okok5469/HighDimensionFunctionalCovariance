@@ -1,0 +1,14 @@
+{
+  "common/statistic_calculator_517.py": "1eb6dbcd64a9bb17410ce25e8c33b69aaa0a1d18add5a078d2c6ea08f01530e9",
+  "common/statistic_calculator_xue.py": "7d99ae74bd6dfc55745ddaaa75ec78b6ca390720da3ded54634d6a5ec8c0794f",
+  "common/xue_helper.py": "7ea58ed21df56d8e25e05ca561a9808ab8424d6bc62966dc0a9c81cbf215dc98",
+  "common/paths.py": "b8cd2c6f226311b8c04ee8223f6903f7f57deda7d7c01e124a225f7b3eb43762",
+  "empirical/har_data_loader.py": "8dfb3673e3fca966b0c77abbbf0b1bba6fa7ab62d323f66438ca14b3fd2329f4",
+  "empirical/Main_HAR_empirical.py": "ceff993a32b44e04aeec37d54d36fcd17bdb1ade8a0a7b21fdf7b5cca4219544",
+  "empirical/task7_har.py": "d3e150c1aa0b606ff2559d5a97719f08e5479fc581df98e9eb9650b485c4c7b5",
+  "empirical/task7_figures.py": "215b8e3d89f8b4cdf90d1f131ffc0ca0c429d0dea8cde263f58ee2b8c4ac1732",
+  "config/empirical/task7_har.json": "58013a344313e88a27c2d4faaacfe3fdd586649e7e534bbc56735bb54f1624dd",
+  "data/har/har_dynamic_long.csv": "6335b05784bd4bf09c109fa1b9f4c997aa3d3bb39f2d0c65be38f9c948d7e1d5",
+  "data/har/har_static_subject.csv": "d860b0403608700d5f0a7901e9182f7901dcc9b4f926ee096948449cd67c5f00",
+  "results/empirical/har/task7_v1/TASK7_HAR_RUN_PACKAGE.zip": "7a4eb19b0a5f03540f5313d0ad9ea92c2b941a618eb5e88b2c7460f002bed234"
+}

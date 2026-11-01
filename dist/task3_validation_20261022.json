@@ -1,0 +1,56 @@
+{
+  "study": "task3_v1",
+  "package": "C:\\XiangMingXu\\26-27\u79cb\u5b63\\HDF\\high_dimension_functional_data_covariance\\dist\\covariance_task3_v1_20261022.zip",
+  "package_sha256": "cde1f003ce5daad3d4bf22a6e2b742947752912833da5eee87a77ea0040bfeea",
+  "package_members": 56,
+  "implementation_hash": "8e3512329f583c14a2b74cff2d9688b5b44872104e5ec89297eb2af47e2f8bc0",
+  "clean_directory": "C:\\Users\\xmx\\AppData\\Local\\Temp\\task3_final_zip_hll30ie4",
+  "clean_source_hash_matches": true,
+  "final_zip_smoke": {
+    "phase": "smoke",
+    "run_id": "494fcd355a558882265785eedcc991dceb1cc30a1d6e01c8ce2f4808c8c12bd9",
+    "complete": true,
+    "requested": 50,
+    "completed": 50,
+    "failures": []
+  },
+  "smoke_seconds": 19.16690800001379,
+  "smoke_output": "C:\\XiangMingXu\\26-27\u79cb\u5b63\\HDF\\high_dimension_functional_data_covariance\\results\\task3_validation_20261022\\final_zip_smoke",
+  "standalone_four_file_powershell_dry_run": true,
+  "powershell_missing_fields": [
+    "ssh.host",
+    "ssh.port",
+    "ssh.user",
+    "ssh.authentication",
+    "bootstrap_memory_mb",
+    "bootstrap_time_minutes",
+    "control_memory_mb",
+    "control_time_minutes",
+    "worker_memory_limit_mb",
+    "worker_time_limit_minutes"
+  ],
+  "local_environment": {
+    "python": "3.12.8",
+    "executable": "C:\\Users\\xmx\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "1.26.4",
+    "scipy": "1.16.1",
+    "pandas": "2.3.0",
+    "matplotlib": "3.10.1",
+    "tqdm": "4.67.1",
+    "blas_config": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /c/opt/64/include\n    lib directory: /c/opt/64/lib\n    name: openblas64\n    openblas configuration: USE_64BITINT=1 DYNAMIC_ARCH=1 DYNAMIC_OLDER= NO_CBLAS=\n      NO_LAPACK= NO_LAPACKE= NO_AFFINITY=1 USE_OPENMP= SKYLAKEX MAX_THREADS=2\n    pc file directory: C:/opt/64/lib/pkgconfig\n    version: 0.3.23.dev\n  lapack:\n    detection method: internal\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: dep3179274605568\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: 1.26.4\nCompilers:\n  c:\n    commands: cl\n    linker: link\n    name: msvc\n    version: 19.29.30153\n  c++:\n    commands: cl\n    linker: link\n    name: msvc\n    version: 19.29.30153\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.0.8\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: windows\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: windows\nPython Information:\n  path: C:\\Users\\runneradmin\\AppData\\Local\\Temp\\cibw-run-g7slqwov\\cp312-win_amd64\\build\\venv\\Scripts\\python.exe\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  not found:\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n\n",
+    "threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1"
+    }
+  },
+  "full_regression_tests": 73,
+  "regression_log": "results/task3_validation_20261022/full_unittest_final.log",
+  "prior_audited_files_hashes_unchanged": true,
+  "target_cluster_runtime_verified": false,
+  "large_experiments_run": false,
+  "remote_submissions": 0
+}

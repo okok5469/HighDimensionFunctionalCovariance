@@ -1,0 +1,14 @@
+{
+  "tests": 37,
+  "passed": true,
+  "bash_syntax": true,
+  "python39_grammar": true,
+  "unchanged_frozen_sources": 8,
+  "original_zip_unchanged": true,
+  "remote_operations": false,
+  "formal_simulation": false,
+  "files": {
+    "dist/task4_submit.sh": "609250a235bea06d6fc9b45dbc1c041e89c7eeb576600b499beddf16ce2e6975",
+    "dist/task4_batch.py": "0c7d287ffb154ff842ff3dfc4723fd3611a71c83ff4e877615dc29dd84ec1f94"
+  }
+}

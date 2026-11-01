@@ -1,0 +1,8 @@
+{
+  "phase": "pilot",
+  "run_id": "686b13930aaa30426bce0cd5a5e03c32a011d58a7117bb8065479a2e15df9113",
+  "requested": 9300,
+  "completed": 9300,
+  "complete": true,
+  "failures": []
+}

@@ -1,0 +1,11 @@
+{
+  "dynamic_csv": "data/har/har_dynamic_long.csv",
+  "static_csv": "data/har/har_static_subject.csv",
+  "historical_dynamic_cache": "results/empirical/har/experiment_results/Y_pool_h1.npy",
+  "metadata_dir": "data/empirical/har/metadata/task7_v1",
+  "processed_dir": "data/empirical/har/processed/task7_v1/legacy_dynamic",
+  "results_dir": "results/empirical/har/task7_v1/har_empirical_task7_v1",
+  "B": 500,
+  "alpha": 0.05,
+  "workers": 6
+}

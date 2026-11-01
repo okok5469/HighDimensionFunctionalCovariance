@@ -1,0 +1,11 @@
+{
+  "full_tests_passed": 81,
+  "clean_zip_eight_worker_contention_test": true,
+  "standalone_dry_run_against_original_zip": true,
+  "original_run_files_unchanged_in_preview": true,
+  "old_zip_sha256": "cde1f003ce5daad3d4bf22a6e2b742947752912833da5eee87a77ea0040bfeea",
+  "new_zip_sha256": "d6536ec104abaa8a9ec1807468173dca505f7b02a670d5b15d6955b02c2017ca",
+  "recovery_script_sha256": "82ef44fd91ff5aa29fd92885e8710504ca3c1ceae501d6e466e87c055557ee8f",
+  "remote_submissions": 0,
+  "target_cluster_runtime_verified": false
+}

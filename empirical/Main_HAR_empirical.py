@@ -23,15 +23,13 @@ from tqdm import tqdm
 
 from empirical.har_data_loader import load_har_static, build_windows
 from common.statistic_calculator_517 import covariance_test
-from common.statistic_calculator_xue import (
-    compute_Tn_xue, xue_critical_value, xue_pvalue, gumbel_pdf
-)
-from common.xue_helper import project_to_fourier_basis
+from common.statistic_calculator_xue import gumbel_pdf
+from common.xue_helper import run_xue_cross_test
 
 from common.paths import HAR_DATA_DIR, HAR_RESULTS_DIR
 
-RESULTS_DIR = HAR_RESULTS_DIR / 'experiment_results'
-FIGURES_DIR = HAR_RESULTS_DIR / 'figures'
+RESULTS_DIR = HAR_RESULTS_DIR / 'xue-audit-v1' / 'experiment_results'
+FIGURES_DIR = HAR_RESULTS_DIR / 'xue-audit-v1' / 'figures'
 
 # ====== 配置 ======
 CSV_PATH_H0     = HAR_DATA_DIR / 'har_static_subject.csv'   # H0: 静态（无协方差结构变化）
@@ -51,6 +49,24 @@ logger = logging.getLogger('har_empirical')
 
 
 # ====== 单次子抽样：同时计算两种检验 ======
+def _checked_xue(data, s, alpha):
+    result = run_xue_cross_test(data, s=s, alpha=alpha)
+    if result['status'] != 'ok':
+        raise ValueError(f"Xue cross test failed: {result['failure_reason']}")
+    return result
+
+
+def _xue_labels(n, p, s=Q_SMOOTH):
+    return {'xue_method': 'Xue-1S-EV-cross-zero',
+            'xue_version': 'xue-audit-v1', 'xue_status': 'ok',
+            'xue_n': n, 'xue_p': p, 'xue_s': s, 'xue_d': p*s,
+            'xue_mean_mode': 'estimate', 'xue_covariance_denominator': 'n',
+            'xue_projection_id': 'fixed_fourier_rectangle_1_over_M',
+            'xue_basis_id': 'fixed_fourier_phi_0_to_s_minus_1',
+            'xue_scope': 'cross-channel zero covariance; unknown within-channel covariance',
+            'xue_theory': 'HAR activity labels do not establish H0; window dependence is not removed by subsampling'}
+
+
 def one_subsample_test(Y_pool, n, p_indices, B, seed, alpha=0.05):
     rng = np.random.default_rng(seed)
     N_pool = Y_pool.shape[0]
@@ -62,12 +78,11 @@ def one_subsample_test(Y_pool, n, p_indices, B, seed, alpha=0.05):
     Tn_b, crit_b, pval_b = covariance_test(Y_sub, B=B, seed=seed)
 
     # Xue 渐近（s = q_smooth，即基展开截断项数，而非窗口长度 M）
-    Y_sub_xue = project_to_fourier_basis(Y_sub, Q_SMOOTH)
-    Tn_x = compute_Tn_xue(Y_sub_xue, s=Q_SMOOTH)
-    crit_x = xue_critical_value(alpha)
-    pval_x = xue_pvalue(Tn_x)
+    xue = _checked_xue(Y_sub, Q_SMOOTH, alpha)
+    Tn_x, crit_x, pval_x = xue['T'], xue['critical_T'], xue['p_value']
 
     return {
+        **_xue_labels(n, len(p_indices)),
         'Tn_boot': Tn_b, 'crit_boot': crit_b, 'pval_boot': pval_b,
         'Tn_xue':  Tn_x, 'crit_xue': crit_x, 'pval_xue':  pval_x,
         'reject_boot': int(pval_b < alpha),
@@ -84,6 +99,7 @@ def repeat_subsample(Y_pool, n, p_indices, n_repeats, B, base_seed, alpha=0.05):
         records.append(rec)
     df = pd.DataFrame(records)
     summary = {
+        **_xue_labels(n, len(p_indices)),
         'boot_reject_rate': df['reject_boot'].mean(),
         'xue_reject_rate':  df['reject_xue'].mean(),
         'Tn_boot_mean':     df['Tn_boot'].mean(),
@@ -150,12 +166,11 @@ def main():
     Y_full = Y_pool[idx]
 
     Tn_b, crit_b, pval_b = covariance_test(Y_full, B=B, seed=42)
-    Y_full_xue = project_to_fourier_basis(Y_full, Q_SMOOTH)
-    Tn_x = compute_Tn_xue(Y_full_xue, s=Q_SMOOTH)
-    crit_x = xue_critical_value(ALPHA)
-    pval_x = xue_pvalue(Tn_x)
+    xue = _checked_xue(Y_full, Q_SMOOTH, ALPHA)
+    Tn_x, crit_x, pval_x = xue['T'], xue['critical_T'], xue['p_value']
 
     exp1 = {
+        **_xue_labels(n_full, p_max),
         'n': n_full, 'p': p_max, 'M': M, 'B': B,
         'Tn_boot': Tn_b, 'crit_boot': crit_b, 'pval_boot': pval_b,
         'reject_boot': int(pval_b < ALPHA),
@@ -176,7 +191,7 @@ def main():
              'Tn_boot_mean', 'Tn_xue_mean',
              'pval_boot_mean', 'pval_xue_mean',
              'crit_boot_mean', 'crit_xue']}
-    exp2.update({'n': n_full, 'p': p_max, 'M': M,
+    exp2.update({**_xue_labels(n_full, p_max), 'n': n_full, 'p': p_max, 'M': M,
                  'B': B, 'n_repeats': N_REPEATS})
     pd.DataFrame([exp2]).to_csv(
         RESULTS_DIR / 'har_exp2_replications.csv', index=False)
@@ -228,6 +243,7 @@ def main():
 
     if grid_results:
         grid_df = pd.DataFrame([{
+            **_xue_labels(r['n'], r['p']),
             'n': r['n'], 'p': r['p'], 'p_over_n': r['p'] / r['n'],
             'boot_reject_rate': r['boot_reject_rate'],
             'xue_reject_rate':  r['xue_reject_rate'],
@@ -261,12 +277,11 @@ def main():
     Y_full_h1 = Y_pool_h1[idx_h1]
 
     Tn_b_h1, crit_b_h1, pval_b_h1 = covariance_test(Y_full_h1, B=B, seed=42)
-    Y_full_h1_xue = project_to_fourier_basis(Y_full_h1, Q_SMOOTH)
-    Tn_x_h1 = compute_Tn_xue(Y_full_h1_xue, s=Q_SMOOTH)
-    crit_x_h1 = xue_critical_value(ALPHA)
-    pval_x_h1 = xue_pvalue(Tn_x_h1)
+    xue_h1 = _checked_xue(Y_full_h1, Q_SMOOTH, ALPHA)
+    Tn_x_h1, crit_x_h1, pval_x_h1 = xue_h1['T'], xue_h1['critical_T'], xue_h1['p_value']
 
     exp4 = {
+        **_xue_labels(n_full_h1, p_max_h1),
         'n': n_full_h1, 'p': p_max_h1, 'M': M, 'B': B,
         'Tn_boot': Tn_b_h1, 'crit_boot': crit_b_h1, 'pval_boot': pval_b_h1,
         'reject_boot': int(pval_b_h1 < ALPHA),
@@ -288,7 +303,7 @@ def main():
              'Tn_boot_mean', 'Tn_xue_mean',
              'pval_boot_mean', 'pval_xue_mean',
              'crit_boot_mean', 'crit_xue']}
-    exp5.update({'n': n_full_h1, 'p': p_max_h1, 'M': M,
+    exp5.update({**_xue_labels(n_full_h1, p_max_h1), 'n': n_full_h1, 'p': p_max_h1, 'M': M,
                  'B': B, 'n_repeats': N_REPEATS})
     pd.DataFrame([exp5]).to_csv(
         RESULTS_DIR / 'har_exp5_h1_replications.csv', index=False)
@@ -339,6 +354,7 @@ def main():
 
     if grid_results_h1:
         grid_df_h1 = pd.DataFrame([{
+            **_xue_labels(r['n'], r['p']),
             'n': r['n'], 'p': r['p'], 'p_over_n': r['p'] / r['n'],
             'boot_reject_rate': r['boot_reject_rate'],
             'xue_reject_rate':  r['xue_reject_rate'],
@@ -552,13 +568,13 @@ def main():
     logger.info("\n--- 生成 H0 vs H1 汇总 ---")
 
     summary_h0_h1 = pd.DataFrame([
-        {'hypothesis': 'H0 (static)', 'Tn_boot_mean': exp2['Tn_boot_mean'],
+        {**_xue_labels(n_full, p_max), 'hypothesis': 'H0 (static)', 'Tn_boot_mean': exp2['Tn_boot_mean'],
          'crit_boot_mean': exp2['crit_boot_mean'],
          'boot_reject_rate': exp2['boot_reject_rate'],
          'Tn_xue_mean': exp2['Tn_xue_mean'],
          'crit_xue': exp2['crit_xue'],
          'xue_reject_rate': exp2['xue_reject_rate']},
-        {'hypothesis': 'H1 (dynamic)', 'Tn_boot_mean': exp5['Tn_boot_mean'],
+        {**_xue_labels(n_full_h1, p_max_h1), 'hypothesis': 'H1 (dynamic)', 'Tn_boot_mean': exp5['Tn_boot_mean'],
          'crit_boot_mean': exp5['crit_boot_mean'],
          'boot_reject_rate': exp5['boot_reject_rate'],
          'Tn_xue_mean': exp5['Tn_xue_mean'],

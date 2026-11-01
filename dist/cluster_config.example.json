@@ -1,0 +1,27 @@
+{
+  "ssh": {
+    "host": null,
+    "port": null,
+    "user": null,
+    "authentication": null,
+    "identity_file": null
+  },
+  "remote_project_dir": "/public/home/xjh/xmx/high_dimension_functional_data_covariance",
+  "account": "xjh",
+  "partition": "CMO_HPC",
+  "module": "anaconda3",
+  "conda_env": "myenv",
+  "run_name": "task3_v1_20261022",
+  "package_file": "covariance_task3_v1_20261022.zip",
+  "bootstrap_memory_mb": null,
+  "bootstrap_time_minutes": null,
+  "control_memory_mb": null,
+  "control_time_minutes": null,
+  "worker_memory_limit_mb": null,
+  "worker_time_limit_minutes": null,
+  "seconds_per_chunk": 1800,
+  "array_concurrency": 8,
+  "poll_seconds": 30,
+  "skip_dimension_extension": false,
+  "download_dir": "./task3_download"
+}

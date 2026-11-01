@@ -1,0 +1,20 @@
+{
+  "checked": [
+    "simulation\\results\\task3_v1_lockfix_20261022\\pilot_summary.csv",
+    "simulation\\results\\task3_v1_lockfix_20261022\\pilot_paired_comparisons.csv",
+    "simulation\\results\\task3_v1_lockfix_20261022\\pilot_diagnostic_summary.csv",
+    "simulation\\results\\task3_v1_lockfix_20261022\\pilot_integrity.json",
+    "simulation\\results\\task3_v1_lockfix_20261022\\pilot_plan.json",
+    "simulation\\results\\task3_v1_lockfix_20261022\\confirm_summary.csv",
+    "simulation\\results\\task3_v1_lockfix_20261022\\confirm_paired_comparisons.csv",
+    "simulation\\results\\task3_v1_lockfix_20261022\\confirm_diagnostic_summary.csv",
+    "simulation\\results\\task3_v1_lockfix_20261022\\confirm_integrity.json",
+    "simulation\\results\\task3_v1_lockfix_20261022\\confirm_plan.json",
+    "simulation\\results\\task3_v1_lockfix_20261022\\confirm_locked.json",
+    "simulation\\results\\task3_v1_lockfix_20261022\\search_decision.json",
+    "simulation\\results\\task3_v1_lockfix_20261022\\DONE.json",
+    "simulation\\results\\task3_v1_lockfix_20261022\\implementation_manifest.json",
+    "docs\\Task5完整数值模拟汇总.md"
+  ],
+  "all_unchanged": true
+}

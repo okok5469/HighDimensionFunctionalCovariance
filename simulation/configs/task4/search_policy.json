@@ -1,0 +1,29 @@
+{
+  "study": "task4_fixed_methods_v1",
+  "B": 500,
+  "alpha": 0.05,
+  "n": 200,
+  "p": 20,
+  "q": 20,
+  "M": 64,
+  "pilot_strengths": {
+    "coherent_all": [0.30, 0.45, 0.60],
+    "local_fejer": [0.30, 0.45, 0.60],
+    "spectrum_fast_b4": [0.45, 0.60]
+  },
+  "alternative_repeats": 50,
+  "null_repeats": 100,
+  "null_groups": ["spectrum_flat_b0", "spectrum_fast_b4"],
+  "fallback_spec": "coherent_two_peaks",
+  "fallback_strengths": [0.30, 0.45, 0.60],
+  "minimum_ours_rejections": 30,
+  "preferred_ours_rejections": 40,
+  "maximum_rejection_gap": 5,
+  "null_suspect_above_rejections": 10,
+  "confirmation_null_repeats": 500,
+  "confirmation_alternative_repeats": 300,
+  "maximum_confirmation_datasets": 2200,
+  "maximum_formal_datasets": 2950,
+  "epsilon": 0.05,
+  "multiplicity": "Bonferroni_over_all_locked_alternative_pairs"
+}
